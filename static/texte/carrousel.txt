@@ -1,0 +1,413 @@
+
+------- HTML -------
+
+
+<div class="carrousel-container">
+                    <div class="carrousel">
+                        <div class="carrousel-iner">
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/1.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_un.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter à l'école des sorciers</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_un.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/2.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_deux.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et la Chambre des secrets</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_deux.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/3.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_trois.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et le Prisonnier d'Azkaban</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_trois.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/4.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_quatre.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et la Coupe de feu</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_quatre.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/5.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_cinq.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et l'Ordre du Phénix</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_cinq.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/6.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_six.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et le Prince de sang-mêlé</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_six.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/7.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_sept.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et les Reliques de la Mort – Partie 1</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_sept.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/8.webp')}}">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_huit.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter et les Reliques de la Mort – Partie 2</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_huit.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/9-2.jpg')}}"
+                                            id="image-20">
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_neuf.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Harry Potter 20ᵉ anniversaire : Retour à Poudlard</h2>
+                                        <a href="{{url_for('routes.player', video = 'harry_potter_neuf.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/10.webp')}}">
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_un.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Les animaux fantastiques</h2>
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_un.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/11.webp')}}">
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_deux.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Les animaux fantastiques : les crimes de Grindlewald</h2>
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_deux.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="slide">
+                                <div class="film">
+                                    <div class="partie-1">
+                                        <img src="{{ url_for('static', filename = 'images/affiches/12.webp')}}">
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_trois.mp4')}}">
+                                            <i class="ri-play-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="partie-2">
+                                        <h2>Les animaux fantastiques : les secrets de dumbledore</h2>
+                                        <a
+                                            href="{{url_for('routes.player', video = 'les_animaux_fantastiques_trois.mp4')}}">
+                                            Regarder
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="carrousel-dots"></div>
+                    <button id="scroll-film"><i class="ri-arrow-down-line"></i></button>
+                </div>
+            </div>
+
+
+
+------- CSS -------
+
+
+
+.carrousel-container {
+    overflow: hidden;
+    margin-bottom: 2rem;
+    width: 60%;
+    margin-bottom: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.carrousel-container button{
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.carrousel-container button:hover{
+    background: #fff;
+    transition: .3s;
+}
+
+.carrousel-container button:hover i{
+    color: #000;
+}
+
+.carrousel {
+    position: relative;
+    width: 100%;
+}
+
+.carrousel-iner {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    flex-wrap: nowrap;
+    padding: 10px;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100%;
+    transition: .5s ease-in-out;
+}
+
+.slide .film {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+}
+
+.partie-1{
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+
+.partie-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.partie-2 h2{
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+.partie-2 a{
+    color: #fff;
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 1rem;
+    cursor: pointer;
+    width: auto;
+    text-align: center;
+    width: 10rem;
+}
+
+.partie-2 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.carrousel-dots {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.carrousel-dots .dot {
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.carrousel-dots .active {
+    border: 10px solid #fff !important;
+}
+
+.carrousel-dots .inactive {
+    border: 10px solid var(--primary);
+}
+
+
+
+------- JS -------
+
+
+
+(function () {
+    "use strict"
+    const slideTimeout = 2000;
+    const $slides = document.querySelectorAll('.slide');
+    let $dots;
+    let intervalId;
+    let currentSlide = 1;
+
+    function slideTo(index) {
+        currentSlide = index >= $slides.length || index < 1 ? 0 : index;
+        $slides.forEach($elt => $elt.style.transform = `translateX(-${currentSlide * 100}%)`);
+        $dots.forEach(($elt, key) => $elt.classList = `dot ${key === currentSlide ? 'active' : 'inactive'}`);
+    }
+
+    function showSlide() {
+        slideTo(currentSlide);
+        currentSlide++;
+    }
+
+    for (let i = 1; i <= $slides.length; i++) {
+        let dotClass = i == currentSlide ? 'active' : 'inactive';
+        let $dot = `<span data-slidId="${i}" class="dot ${dotClass}"></span>`;
+        document.querySelector('.carrousel-dots').innerHTML += $dot;
+    }
+
+    const $dotContainer = document.querySelector('.carrousel-dots');
+    $dots = document.querySelectorAll('.dot');
+    $dots.forEach(($elt, key) => $elt.addEventListener('click', () => slideTo(key)));
+
+    intervalId = setInterval(showSlide, slideTimeout)
+    $slides.forEach($elt => {
+        let startX;
+        let endX;
+
+        $elt.addEventListener('mouseover', () => {
+            clearInterval(intervalId);
+        }, false)
+
+        $elt.addEventListener('mouseout', () => {
+            intervalId = setInterval(showSlide, slideTimeout);
+        }, false);
+
+        $elt.addEventListener('touchstart', (event) => {
+            startX = event.touches[0].clientX;
+        });
+
+        $elt.addEventListener('touchend', (event) => {
+            endX = event.changedTouches[0].clientX;
+            if (startX > endX) {
+                slideTo(currentSlide + 1);
+            } else if (startX < endX) {
+                slideTo(currentSlide - 1);
+            }
+        });
+    })
+})();

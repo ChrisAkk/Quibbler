@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/contact.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body data-user-id="{{ user.id }}">
+    <header>
+        <div class="global-header">
+            <button class="menu-btn-phone">
+                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
+                <div class="phone-menu">
+                    <a class="exit"><i class="ri-close-line"></i></a>
+                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    {% if user.admin == 1 %}
+                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    {%endif%}
+                </div>
+            </button>
+            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
+            <div class="menu">
+                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
+                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
+                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
+                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
+                <button class="menu-btn pc-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    <div class="profil-menu">
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        {% if user.admin == 1 %}
+                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        {%endif%}
+                    </div>
+                </button>
+                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Début de la page -->
+
+    <main>
+        <div class="section-1">
+            <h2> Contact </h2>
+            <p>Une <span>question</span>, une idée magique à partager ou simplement l’envie de dire <span>bonjour</span> ? N’hésite pas à
+                m’envoyer un <span>hibou</span>! Que tu sois un moldu curieux, un élève de Poudlard en vadrouille ou un membre
+                du Ministère en mission secrète, je te répondrai aussi <span>vite</span> qu’un éclair de feu. Tu peux m’écrire
+                pour suggérer une <span>amélioration</span> du site, <span>signaler un bug</span> ou une <span>erreur</span> dans un sort, partager une
+                <span>anecdote</span> magique, <span>parler</span> de ton amour pour la saga ou simplement <span>discuter</span> entre fans.
+            </p>
+        </div>
+        <div class="section-2">
+            <div class="global-mail">
+                <p id="cooldown-message" style="display: none; color: #fff; margin-bottom: 1rem;" ></p>
+                <form id="contact-form" action="/contacts" method="POST">
+                    <div class="contact-de-global">
+                        <div class="contact-de">
+                            <label for="name" class="titre-contact">Nom</label>
+                            <input id="name" class="name" type="text" name="nom_utilisateur" placeholder="Votre Nom & Prénom" required>
+                        </div>
+                        <div class="contact-de">
+                            <label for="mail" class="titre-contact">E-mail</label>
+                            <input id="mail" class="mail" type="email" name="email_utilisateur" placeholder="Votre e-mail" required>
+                        </div>
+                    </div>
+                    
+                    <label for="objet" class="titre-contact">Sujet</label>
+                    <input id="objet" class="objet" type="text" name="objet" placeholder="Objet" required>
+                    <label for="message" class="titre-contact">Message</label>
+                    <textarea id="message" class="message" type="text" name="message" placeholder="Votre message" required></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fin de la page -->
+
+    <footer>
+        <img src="/static/images/background-footer.png">
+        <div class="all-footer">
+            <p>copyright 2025 | Quibbler</p>
+            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
+            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
+            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
+            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'javascript/contact.js')}}"></script>
+</body>
+
+</html>

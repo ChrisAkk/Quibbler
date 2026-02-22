@@ -1,0 +1,94 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+    --primary: #0f172a;
+    --secondary: #151e34;
+    --primary-hover: #5fa3f8;
+    --accent: #1c2743;
+}
+
+/* ======================== */
+/*        PAGE FILMS        */
+/* ======================== */
+
+body {
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+/* admin only */
+
+.admin-only{
+    width: 100%;
+    height: 60vh;
+}
+
+/* admin */
+
+.admin-body h1{
+    color: #fff;
+}
+
+.bg-dark{
+    background-color: var(--primary) !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color: #fff !important;
+    background-color: #0f172a !important;
+}
+
+a {
+    color: #fff !important;
+    background-color: transparent !important;
+}
+
+.form-control{
+    background: var(--accent) !important;
+    border: 1px solid var(--secondary) !important;
+    color: #fff !important;
+}
+
+.mb-2{
+    padding: 1.5rem !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    border-bottom: 2px solid var(--accent) !important;
+}
+
+.bg-light{
+    background: var(--secondary) !important;
+}
+
+.btn-primary{
+    background: var(--primary-hover) !important;
+}
+
+.container{
+    max-width: none !important;
+    width: 70%;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body class="{% if erreur %}back-error{%else%}back-no-error{% endif %}">
+
+    <!-- Début de la page -->
+    <main>
+        {% if mode == 1 %}
+            {% if not erreur %}
+                <a class="back-btn" href="{{url_for('routes.to_jeux')}}"><i class="ri-arrow-left-line"></i></a>
+                <div class="global-buy">
+                    <div class="card">
+                        <p><img src="{{ url_for('static', filename='images/cards/' ~ carte ~ '.png')}}"></p>
+                    </div>
+                    {% if niveau == 1 %}
+                        <div class="magic-overlay-bronze"></div>
+                    {% elif niveau == 2 %}
+                        <div class="magic-overlay-argent"></div>
+                    {% elif niveau == 3 %}
+                        <div class="magic-overlay-or"></div>
+                    {% else %}
+                        <div class="magic-overlay"></div>
+                    {%endif%}
+                </div>
+            {% else %}
+                <div class="back-error">
+                   <button id="back-btn-2">{{erreur}}</button> 
+                </div>
+            {% endif %}
+        {% endif %}
+    </main>
+    <!-- Fin de la page -->
+
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
+</body>
+
+</html>

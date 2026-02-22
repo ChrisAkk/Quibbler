@@ -1,0 +1,7 @@
+. Pour retirer le cooldown, il suffit d'aller : 
+inspectez -> consol -> code -> run 
+
+code : 
+localStorage.removeItem('lastSent');
+document.querySelector('#contact-form').classList.remove('active');
+document.querySelector('#cooldown-message').style.display = 'none';

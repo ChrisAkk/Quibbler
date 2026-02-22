@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/profil.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body>
+    <header>
+        <div class="global-header">
+            <button class="menu-btn-phone">
+                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
+                <div class="phone-menu">
+                    <a class="exit"><i class="ri-close-line"></i></a>
+                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    {% if user.admin == 1 %}
+                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    {%endif%}
+                </div>
+            </button>
+            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
+            <div class="menu">
+                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
+                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
+                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
+                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
+                <button class="menu-btn pc-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    <div class="profil-menu">
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        {% if user.admin == 1 %}
+                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        {%endif%}
+                    </div>
+                </button>
+                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Début de la page -->
+
+    <main>
+        <div class="global-profil">
+            <h1 class="decoration-title">Profil</h1>
+            <div class="section-2 pc">
+                <div class="maison-profil">
+                    {% if maison == "Gryffondor" or maison == "Poufsouffle" or maison == "Serdaigle" or maison ==
+                    "Serpentard" %}
+                    <div><img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}"></div>
+                    {% else %}
+                    <a href="{{ url_for('routes.to_jeux')}}">
+                        <img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}">
+                        <i class="ri-pencil-line"></i>
+                    </a>
+                    {%endif%}
+                    <h2>Maison</h2>
+                </div>
+                <div class="photo-profil">
+                    <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST"
+                        enctype="multipart/form-data">
+                        <label for="profil-picture-input">
+                            <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt=""
+                                class="photo-profil">
+                            <i class="ri-camera-line"></i>
+                        </label>
+                        <input type="file" id="profil-picture-input" name="file" accept="image/*"
+                            style="display: none;">
+                    </form>
+                    <h2>Photo de profil</h2>
+                </div>
+                <div class="patronus-profil">
+                    {% if patronus != "patronus" %}
+                    <div><img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}"></div>
+                    {% else %}
+                    <a href="{{ url_for('routes.to_jeux')}}">
+                        <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}">
+                        <i class="ri-pencil-line"></i>
+                    </a>
+                    {%endif%}
+                    <h2>Patronus</h2>
+                </div>
+            </div>
+            <div class="section-2 phone">
+                <div class="photo-profil">
+                    <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST"
+                        enctype="multipart/form-data">
+                        <label for="profil-picture-input">
+                            <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt=""
+                                class="photo-profil">
+                            <i class="ri-camera-line"></i>
+                        </label>
+                        <input type="file" id="profil-picture-input" name="file" accept="image/*"
+                            style="display: none;">
+                    </form>
+                    <h2>Photo de profil</h2>
+                </div>
+                <div class="personnality">
+                    <div class="maison-profil">
+                        {% if maison == "Gryffondor" or maison == "Poufsouffle" or maison == "Serdaigle" or maison ==
+                        "Serpentard" %}
+                        <div><img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}"></div>
+                        {% else %}
+                        <a href="{{ url_for('routes.to_jeux')}}">
+                            <img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}">
+                            <i class="ri-pencil-line"></i>
+                        </a>
+                        {%endif%}
+                        <h2>Maison</h2>
+                        <h2 style="color: #d4d4d4;">{{maison}}</h2>
+                    </div>
+                    <div class="patronus-profil">
+                        {% if patronus != "patronus" %}
+                        <div><img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}"></div>
+                        {% else %}
+                        <a href="{{ url_for('routes.to_jeux')}}">
+                            <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}">
+                            <i class="ri-pencil-line"></i>
+                        </a>
+                        {%endif%}
+                        <h2>Patronus</h2>
+                        <h2 style="color: #d4d4d4;">{{patronus}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="section-3">
+                <div class="section-3-1">
+                    <h2 class="decoration-title">Identité magique</h2>
+                    <div class="info-perso" data-field="">
+                        <span class="field-label">Nom de sorcier(es) :</span><span class="field-value"> {{ username
+                            }}</span>
+                        <a href="#section-4" class="edit-btn">
+                            {% if username %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="maison">
+                        <span class="field-label">Maison :</span><span class="field-value">
+                            {% if maison != "poudlard" %}
+                            {{ maison }}
+                            {%endif%}
+                        </span>
+                        <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
+                            {% if maison != "poudlard" %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="patronus">
+                        <span class="field-label">Patronus :</span><span class="field-value">
+                            {% if patronus != "patronus" %}
+                            {{ patronus }}
+                            {%endif%}
+                        </span>
+                        <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
+                            {% if patronus != "patronus" %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="alignement">
+                        <span class="field-label">Alignement :</span><span class="field-value"> {{ alignement
+                            }}</span>
+                        <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
+                            {% if alignement %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                </div>
+                <div class="section-3-1">
+                    <h2 class="decoration-title">Fan de la saga</h2>
+                    <div class="info-perso" data-field="film">
+                        <span class="field-label">Film préféré :</span><span class="field-value"> {{ film }}</span>
+                        <a href="{{ url_for('routes.to_films')}}" class="edit-btn">
+                            {% if user.film %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="livre">
+                        <span class="field-label">Livre préféré :</span><span class="field-value"> {{ livre }}</span>
+                        <a href="{{ url_for('routes.to_livres')}}" class="edit-btn">
+                            {% if user.livre %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="carte">
+                        <span class="field-label">Carte favorite :</span><span class="field-value"> {{ carte }}</span>
+                        <a href="{{ url_for('routes.to_album')}}" class="edit-btn">
+                            {% if carte %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="matiere">
+                        <span class="field-label">Matière préférée :</span><span class="field-value">{{ user.matiere
+                            }}</span>
+                        <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
+                            {% if user.matiere %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                    <div class="info-perso" data-field="animal">
+                        <span class="field-label">Animal de compagnie :</span><span class="field-value">{{ user.animal
+                            }}</span>
+                        <a href="{{ url_for('routes.to_encyclopedie')}}#section-animal" class="edit-btn">
+                            {% if user.animal %}
+                            <i class="ri-checkbox-line"></i>
+                            {% else %}
+                            <i class="ri-checkbox-blank-line"></i>
+                            {%endif%}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="preference">
+                <h2>Preference</h2>
+                <div class="preference-details"><button class="btn-spark">Spark</button></div>
+                <div class="preference-details"><button class="btn-logout">Déconnexion</button></div>
+                <div class="global-logout">
+                    <a href="{{ url_for('routes.logout')}}" class="logout">Déconnexion</a>
+                </div>
+                <div class="preference-details"><button class="btn-delete">supprimer le compte</button></div>
+                <div class="global-delete">
+                    <a href="{{ url_for('routes.delete_account')}}" class="delete">supprimer</a>
+                </div>
+            </div>
+            <section class="section-profil" id="section-4">
+                <div class="form-content">
+                    <h2 class="h2-profil">Changer de mot de passe</h2>
+
+                    <div class="error-container">
+                        {% if password_change == 1 %}
+                        <p class="error"> {{ password_message }} </p>
+                        {% elif password_change == 2 %}
+                        <p class="no-error"> {{ password_message }} </p>
+                        {% else %}
+                        <p></p>
+                        {%endif%}
+                    </div>
+
+                    <form action="" method="post" id="form-password">
+                        <input type="hidden" name="form_type" value="password_change">
+                        <label for="old_username_pwd">Nom d'utilisateur</label>
+                        <input style="font-family: serif;" type="text" id="old_username_pwd" name="old_username"
+                            placeholder="Votre nom d'utilisateur" required>
+                        <label for="old_password">Ancien mot de passe</label>
+                        <input style="font-family: serif;" type="password" id="old_password" name="old_password"
+                            placeholder="Votre ancien mot de passe" required>
+                        <label for="new_password">Nouveau mot de passe</label>
+                        <input style="font-family: serif;" type="password" id="new_password" name="new_password"
+                            placeholder="Votre nouveau mot de passe" required>
+                        <div class="strength-meter">
+                            <div id="strength-bar" class="strength-bar"></div>
+                        </div>
+                        <ul class="password-requirements">
+                            <li id="length" class="invalid">Au moins 8 caractères</li>
+                            <li id="uppercase" class="invalid">Une majuscule</li>
+                            <li id="lowercase" class="invalid">Une minuscule</li>
+                            <li id="number" class="invalid">Un chiffre</li>
+                            <li id="special" class="invalid">Un caractère spécial</li>
+                        </ul>
+                        <input type="submit" value="Enregistrer" class="btn-submit">
+                    </form>
+
+                </div>
+
+                <div class="form-content">
+                    <h2 class="h2-profil"> Changer de nom d'utilisateur</h2>
+
+                    <div class="error-container">
+                        {% if username_change == 1 %}
+                        <p class="error"> {{ username_message }} </p>
+                        {% elif username_change == 2 %}
+                        <p class="no-error"> {{ username_message }} </p>
+                        {% else %}
+                        <p></p>
+                        {%endif%}
+                    </div>
+
+                    <form action="" method="post" id="form-username">
+                        <input type="hidden" name="form_type" value="username_change">
+                        <label for="old_username_usr">Ancien nom d'utilisateur</label>
+                        <input style="font-family: serif;" type="text" id="old_username_usr" name="old_username"
+                            placeholder="Votre ancien nom d'utilisateur" required>
+                        <label style="font-family: serif;" for="new_username"> Nouveau nom d'utilisateur</label>
+                        <input type="text" id="new_username" name="new_username"
+                            placeholder="Votre nouveau nom d'utilisateur" required>
+                        <label style="font-family: serif;" for="password_usr"> Mot de passe</label>
+                        <input type="password" id="password_usr" name="password_username"
+                            placeholder="Votre  mot de passe" required>
+                        <input type="submit" value="Enregistrer" class="btn-submit">
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Fin de la page -->
+
+    <footer>
+        <img src="/static/images/background-footer.png">
+        <div class="all-footer">
+            <p>copyright 2025 | Quibbler</p>
+            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
+            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
+            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
+            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'javascript/profil.js')}}"></script>
+</body>
+
+</html>

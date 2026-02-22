@@ -1,0 +1,124 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+  --primary: #0f172a;
+  --secondary: #151e34;
+  --primary-hover: #5fa3f8;
+  --accent: #1c2743;
+}
+
+/* ========================== */
+/*        PAGE CONTACT        */
+/* ========================== */
+
+body {
+    background: var(--primary);
+    margin: 0;
+    padding: 0;
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+/* section 2 */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    padding-top: 5rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    padding-bottom: 30px;
+}
+
+.section p {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    border-radius: 20px;
+    text-align: left;
+    color: #d4d4d4;
+}
+
+.text-btn {
+    cursor: pointer;
+    color: #d4d4d4;
+}
+
+.text-btn:hover{
+    color: #fff;
+}
+
+.section a{
+    text-decoration: none;
+    color: #d4d4d4;
+}
+
+.sources {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+
+/* Adaptation à tout type d'écran */
+
+@media (max-width : 1024px) {
+
+    .explication{
+        width: 90%;
+    }
+
+
+    .explication h2 {
+        font-size: 2rem;
+    }
+
+    .explication p {
+        font-size: 15px;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+        padding-bottom: 10px;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width : 768px) {
+    .section{
+        width: 90%;
+        padding-top: 1rem;
+    }
+}

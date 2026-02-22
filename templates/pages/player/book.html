@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonne lecture !</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/livres.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body class="body-book">
+    <header>
+        <div class="global-header">
+            <button class="menu-btn-phone">
+                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
+                <div class="phone-menu">
+                    <a class="exit"><i class="ri-close-line"></i></a>
+                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    {% if user.admin == 1 %}
+                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    {%endif%}
+                </div>
+            </button>
+            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
+            <div class="menu">
+                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
+                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
+                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
+                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
+                <button class="menu-btn pc-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    <div class="profil-menu">
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        {% if user.admin == 1 %}
+                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        {%endif%}
+                    </div>
+                </button>
+                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="book-global-container">
+            <button id="back-btn"><i class="ri-arrow-left-line"></i></button>
+            <button id="favorite"><i id="heart-icon" class=" {{ 'ri-heart-fill' if book_favorite else 'ri-heart-line' }}"></i></button>
+            <div class="book-container">
+                {% if authorized == 1 %}
+                <canvas id="pdf-canvas"></canvas>
+                {% else %}
+                <img src="../../../static/images/admin-livre.webp">
+                {%endif%}
+            </div>
+            <div class="book-control">
+                <button class="prev">Page précédente</button>
+                <span class="number-page" id="page-number">Page 1</span>
+                <button class="next">Page suivante</button>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <img src="/static/images/background-footer.png">
+        <div class="all-footer">
+            <p>copyright 2025 | Quibbler</p>
+            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
+            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
+            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
+            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+    <script type="module" src="{{ url_for('static', filename = 'javascript/livres.js')}}"></script>
+    <script type="module">
+
+        // Bouton favoris -----
+
+        const favori = document.querySelector('#heart-icon');
+        const favoriBtn = document.querySelector('#favorite');
+
+        favoriBtn.addEventListener('click', () => {
+
+            const isFav = favori.classList.contains('ri-heart-fill');
+            const newState = !isFav; 
+
+            favori.classList.toggle('ri-heart-line');
+            favori.classList.toggle('ri-heart-fill');
+
+            fetch("/set_book_favorite", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    book: pdfPath,
+                    favorite: newState
+                })
+            });
+        });
+
+        // livres si admin -----
+
+        import * as pdfjsLib from "{{ url_for('static', filename='pdfjs/pdf.mjs') }}";
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ url_for('static', filename='pdfjs/pdf.worker.mjs') }}";
+
+        const pdfPath = "{{ book }}";
+        const canvas = document.getElementById("pdf-canvas");
+        const ctx = canvas.getContext("2d");
+        const pageNumText = document.getElementById("page-number");
+
+        let pdfDoc = null;
+        let pageNum = 1;
+
+        async function fetchProgress() {
+            try {
+                const response = await fetch(`/book_progress?book=${encodeURIComponent(pdfPath)}`);
+                const data = await response.json();
+                if (data.position) pageNum = data.position;
+            } catch (err) {
+                console.error("Impossible de récupérer la progression :", err);
+            }
+        }
+
+        async function saveProgress(num) {
+            try {
+                await fetch("/book_progress", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ book: pdfPath, pageNum: num })
+                });
+            } catch (err) {
+                console.error("Impossible de sauvegarder la progression :", err);
+            }
+        }
+
+        async function renderPage(num) {
+            const page = await pdfDoc.getPage(num);
+            const viewport = page.getViewport({ scale: 1 });
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            await page.render({
+                canvasContext: ctx,
+                viewport: viewport
+            }).promise;
+
+            pageNumText.textContent = `Page ${num}`;
+            saveProgress(num);
+        }
+
+        pdfjsLib.getDocument("{{ url_for('static', filename='images/livres/' + book) }}").promise
+            .then(async pdf => {
+                pdfDoc = pdf;
+                await fetchProgress();
+                renderPage(pageNum);
+            });
+
+        document.querySelector(".next").addEventListener("click", () => {
+            if (pageNum < pdfDoc.numPages) {
+                pageNum++;
+                renderPage(pageNum);
+            }
+        });
+
+        document.querySelector(".prev").addEventListener("click", () => {
+            if (pageNum > 1) {
+                pageNum--;
+                renderPage(pageNum);
+            }
+        });
+
+        // fin -----
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo-v2.png')}}" type="image/jpeg">
+</head>
+
+<body>
+    <main>
+        <div class="step-2">
+            <div class="background"><a class="back" href="{{ url_for('routes.to_welcome')}}"><i class="ri-arrow-left-line"></i></a></div>
+            <a class="back-2" href="{{ url_for('routes.to_welcome')}}"><i class="ri-arrow-left-line"></i></a>
+            <div class="form-content">
+                <h1>Connecte-toi</h1>
+                {% if login_erreur %}
+                <p id="error-message-login" class="error">{{ login_erreur }}</p>
+                {% endif %}
+                <form action="{{ url_for('routes.login') }}" method="POST">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input style="font-family: serif;" type="text" id="username" name="username" placeholder="Votre nom d'utilisateur" required>
+
+                    <label for="password">Mot de passe</label>
+                    <input style="font-family: serif;" type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+
+                    <input type="submit" value="Envoyer" class="btn-submmit">
+                </form>
+                <a id="sign-up" href="{{ url_for('routes.sign_up')}}">Aucun compte ? Ouvre la porte magique, inscris-toi !</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename = 'javascript/index.js')}}"></script>
+</body>
+
+</html>

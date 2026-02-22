@@ -1,0 +1,545 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+    --primary: #0f172a;
+    --secondary: #151e34;
+    --primary-hover: #5fa3f8;
+    --accent: #1c2743;
+}
+
+/* ========================= */
+/*        PAGE PROFIL        */
+/* ========================= */
+
+body {
+    background-color: var(--primary);
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+.global-profil {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* section 2 */
+
+.global-profil h1 {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.section-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 2rem;
+}
+
+.section-2 .maison-profil,
+.section-2 .photo-profil {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-2 .photo-profil input {
+    display: none;
+}
+
+.section-2 .photo-profil form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+.section-2 .photo-profil h2,
+.section-2 .maison-profil h2,
+.section-2 .patronus-profil h2 {
+    font-size: 10px;
+}
+
+.section-2 .photo-profil label,
+.section-2 .maison-profil a,
+.section-2 .patronus-profil a {
+    display: inline-block;
+    position: relative;
+}
+
+.section-2 .photo-profil label i,
+.section-2 .maison-profil a i,
+.section-2 .patronus-profil a i {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 3rem;
+    opacity: 0;
+}
+
+.section-2 .photo-profil label:hover i,
+.section-2 .maison-profil a:hover i,
+.section-2 .patronus-profil a:hover i {
+    opacity: 1;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.section-2 .photo-profil img,
+.section-2 .maison-profil img,
+.section-2 .patronus-profil img {
+    width: 250px;
+    height: auto;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+}
+
+.section-2 .photo-profil img:hover,
+.section-2 .maison-profil a img:hover,
+.section-2 .patronus-profil a img:hover {
+    filter: blur(1px);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.phone{
+    display: none;
+}
+
+.personnality{
+    display: flex;
+    margin-top: 50px;
+}
+
+/* section 3 */
+
+.section-3-1,
+.section-3-2 {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    text-align: left;
+}
+
+.section-3 {
+    border-top: 1px solid var(--accent);
+}
+
+.section-3-1 span,
+.section-3-2 {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.section-3-1 p,
+.section-3-2 {
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.info-perso {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 250px 1fr 50px;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.edit-btn:hover i {
+    color: var(--primary-hover);
+    transition: .3s;
+}
+
+/* section 4 */
+
+.section-profil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--accent);
+    gap: 30px;
+}
+
+.form-content {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.form-content a {
+    color: #d4d4d4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.form-content a:hover {
+    color: #fff;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.h2-profil {
+    font-size: 1.5rem;
+}
+
+form {
+    width: 100%;
+    font-size: 1rem;
+}
+
+.section-profil form input {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    outline: none;
+    border: 1px solid var(--primary);
+    background-color: var(--secondary);
+    transition: .3s;
+    font-family: serif;
+}
+
+.section-profil form input:focus {
+    border: 1px solid var(--primary);
+}
+
+.section-profil form label {
+    margin: 1rem 0;
+    display: block;
+}
+
+.btn-submit {
+    background: var(--primary);
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: .3s;
+    font-size: 20px;
+}
+
+.btn-submit:hover {
+    background: var(--primary-hover);
+}
+
+
+.btn-submit:focus {
+    border: none;
+}
+
+input::placeholder,
+input {
+    font-size: 18px;
+}
+
+.error-container {
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-container .error {
+    color: #ff0000;
+}
+
+.error-container .no-error {
+    color: #008000;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px var(--secondary) inset !important;
+    -webkit-text-fill-color: #fff !important;
+    caret-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus {
+    background-color: #1c1c1c !important;
+    color: #fff !important;
+}
+
+.preference {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid var(--accent);
+}
+
+.preference button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.preference-details button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.preference-details .btn-spark.active {
+    background: var(--secondary);
+}
+
+.global-delete,
+.global-logout {
+    display: none;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.global-delete a,
+.global-logout a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s;
+    text-decoration: none;
+}
+
+.global-delete a:hover,
+.global-logout a:hover {
+    background: #fff;
+    color: var(--secondary);
+}
+
+.global-delete.active,
+.global-logout.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btn-delete.active,
+.btn-logout.active {
+    background: var(--secondary);
+}
+
+.strength-meter {
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.weak { 
+    background-color: #ff4d4d; 
+    width: 25%; 
+}
+.medium { 
+    background-color: #ffd11a; 
+    width: 50%; }
+    
+.strong { 
+    background-color: #4CAF50; 
+    width: 100%; }
+
+.password-requirements{
+    display: none;
+}
+
+.password-requirements.active{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.password-requirements.active li {
+    font-size: 0.8rem;
+    list-style: none;
+    transition: color 0.3s;
+}
+
+.invalid { 
+    color: #ff4d4d; 
+}
+.invalid::before { 
+    content: "✖ "; 
+}
+.valid { 
+    color: #4CAF50; 
+}
+.valid::before {
+     content: "✔ "; 
+}
+
+/* Adaptation à tout type d'écran */
+
+@media (max-width : 1024px) {
+    .section-profil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-content {
+        width: auto;
+        border: none;
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid var(--primary);
+        margin: 20px;
+    }
+
+    .section-2 .photo-profil img,
+    .section-2 .maison-profil img,
+    .section-2 .patronus-profil img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .section-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .phone{
+        display: none;
+    }
+}
+
+@media (max-width : 768px) {
+
+    .global-profil {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .section-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-perso span {
+        font-size: 12px;
+    }
+
+    .info-perso {
+        grid-template-columns: 150px 1fr 10px;
+        gap: 5px;
+        margin-bottom: 5px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .edit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .photo-profil {
+        display: flex;
+        width: 200px;
+        height: 200px;
+    }
+
+    select {
+        background: #00002c;
+        font-family: serif;
+        padding: 3px;
+        border-radius: 10px;
+        border: none;
+        font-size: 0.9rem;
+    }
+
+    .phone{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pc{
+        display: none;
+    }
+
+    .section-2 .maison-profil img,
+    .section-2 .patronus-profil img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .personnality h2{
+        margin-bottom: 0;
+    }
+}

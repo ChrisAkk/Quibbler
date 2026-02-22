@@ -1,0 +1,163 @@
+{
+    "encyclopedia": {
+        
+        "1. Les Personnages": {
+            "a. Les Personnages Principaux": [
+                {"nom": "Harry Potter", "description": "Le goat"}
+            ],
+            "b. Les Personnages Fictifs": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+        "2. Les Organisations et Régulations Magiques": {
+            "a. Organisations Officielles et Académiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Sociétés et Clubs Informels": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Lois et Règlements Magiques": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+        "3. Les Événements Historiques": {
+            "a. Les Grands Événements Historiques": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+        "4. La Presse et Les Médias": {
+            "a. Les Revues de Presse": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Radios et Médias Sorciers": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Les Maisons d’Éditions": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+         "5. Les Représentations Artistiques": {
+            "a. Les Pièces de Théâtre Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Musiques et poèmes": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+         "6. L’Éducation et Les Divertissements": {
+            "a. La Littérature Magique": [
+                {"nom": "", "description": ""}
+            ],
+            "b. L’ Éducation Magique": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Les Langages Spéciaux": [
+                {"nom": "", "description": ""}
+            ],
+            "d. Les Expressions": [
+                {"nom": "", "description": ""}
+            ],
+            "e. Les Jeux et Jouets Magiques": [
+                {"nom": "", "description": ""}
+            ]
+        },
+
+         "7. Les Correspondances Ensorcelées": {
+            "a. Lettres Personnelles": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Journaux Intimes": [
+                {"nom": "", "description": ""}
+            ]
+         },
+
+        "8. Les Lieux": {
+            "a. Lieux Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Lieux Moldu": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "9. Les Créatures": {
+            "a. Les Créatures Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Créatures Non Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Les Créatures Imaginaires": [
+                {"nom": "", "description": ""}
+            ],
+            "d. Les Parties de Créatures": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "10. La Botanique": {
+            "a. Les Plantes Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Parties de Plantes": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "11. La Gastronomie Magique": {
+            "a. Les Confiseries Sorcières": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Pâtisseries Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Les Plats du Monde Sorcier": [
+                {"nom": "", "description": ""}
+            ],
+            "d. Les Boissons Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "e. Les Aliments Mentionnées": [
+                {"nom": "", "description": ""}
+            ],
+            "f. Les Aliments pour Animaux": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "12. Les Potions et les Effets": {
+            "a. Les Potions": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Ingrédients de Potions": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Effets secondaires et Maladies": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "13. Les Sorts et Incantations": {
+            "a. Les Sortilèges par Nom et Formule": [
+                {"nom": "", "description": ""}
+            ],
+            "b. Les Sortilèges par Effet": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Les Forme de magie": [
+                {"nom": "", "description": ""}
+            ]
+        },
+        "14. Les Artefacts Magiques": {
+            "a. Les Objets Magiques": [
+                {"nom": "", "description": ""}
+            ],
+            "b. L’Argent des sorciers": [
+                {"nom": "", "description": ""}
+            ],
+            "c. Tapisseries magiques": [
+                {"nom": "", "description": ""}
+            ]
+        }
+    }
+}

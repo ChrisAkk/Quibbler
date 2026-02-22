@@ -1,0 +1,10 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h2>Bienvenue dans le panel Admin</h2>
+<p>Cette page est réservée aux administrateurs.
+    Si vous n'avez rien à faire ici, mieux vaut rebrousser chemin.
+    Dans tous les cas… vous ne pouvez rien faire</p>
+<a href="{{ url_for('routes.to_home') }}" class="btn btn-primary">Retour au site</a>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/admin.css') }}">
+{% endblock %}

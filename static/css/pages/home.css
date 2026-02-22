@@ -1,0 +1,609 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+    --primary: #0f172a;
+    --secondary: #151e34;
+    --primary-hover: #5fa3f8;
+    --accent: #1c2743;
+}
+
+/* ======================= */
+/*        PAGE HOME        */
+/* ======================= */
+
+body {
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.global-home {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+/* section 1 titre principale */
+
+.section-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-1 {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    text-align: left;
+}
+
+.title-1.reveal .cloud {
+    clip-path: inset(0 0 0 0);
+}
+
+.title-1 h1,
+.title-1 p {
+    position: relative;
+    z-index: 1;
+}
+
+.title-1 h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.title-1 p {
+    color: #d4d4d4;
+}
+
+
+p {
+    font-size: 1rem;
+}
+
+.section-1 button {
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.section-1 button:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+@media (max-width : 1024px) {
+    .section-1 button {
+        display: none;
+    }
+
+    .title-1{
+        margin-top: 2rem;
+        width: 90%;
+    }
+
+    .title-1 h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width : 768px) {
+    .title-1 h1{
+        font-size: 2rem;
+    }
+
+    .global-home{
+        width: 90%;
+    }
+}
+
+
+/* section 2 titre secondaire */
+
+.section-2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title-2 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.title-2 h1 {
+    font-size: 2.5rem;
+}
+
+.title-2 p {
+    color: #d4d4d4;
+}
+
+.section-2-1 {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.section-2-1-1,
+.section-2-1-2,
+.section-2-1-3 {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 3rem;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.section-2-1-1 {
+    background-color: var(--secondary);
+    transition: .3s;
+}
+
+.section-2-1-2 {
+    background-color: var(--secondary);
+    transition: .3s;
+}
+
+.section-2-1-3 {
+    background-color: var(--secondary);
+    transition: .3s;
+}
+
+.section-2-1-1:hover,
+.section-2-1-2:hover,
+.section-2-1-3:hover {
+    background-color: var(--accent);
+    transition: .3s;
+}
+
+.section-2-1-1 h2,
+.section-2-1-2 h2,
+.section-2-1-3 h2 {
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.section-2-1-1 a:hover,
+.section-2-1-2 a:hover,
+.section-2-1-3 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+
+@media (max-width : 1024px) {
+    .title-2{
+        padding-top: 1rem;
+    }
+
+    .title-2 h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-2-1-1,
+    .section-2-1-2,
+    .section-2-1-3 {
+        padding: 1rem;
+    }
+
+    .section-2-1-1 p,
+    .section-2-1-2 p,
+    .section-2-1-3 p {
+        font-size: 14px;
+    }
+
+    .section-2-1 {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width : 768px) {
+
+    .title-2 h1{
+        font-size: 1.5rem;
+    }
+
+    .title-2{
+        padding-bottom: 2rem;
+    }
+}
+
+/* section 3 film */
+
+.section-3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+}
+
+.title-3 {
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    gap: 2rem;
+}
+
+.section-3-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.section-3-1 p {
+    color: #d4d4d4;
+}
+
+.section-3-1 a {
+    margin-top: 20px;
+    padding: 20px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.section-3-1 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.title-3:has(.section-3-1 a:hover) .section-3-2 img {
+    box-shadow: 0 0 100px var(--primary);
+    transform: scale(1.028);
+    transition: transform .45s, box-shadow .45s;
+}
+
+.section-3-2 {
+    display: flex;
+    align-items: center;
+}
+
+.section-3-2 img {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+
+@media (max-width : 1024px) {
+    .section-3-2 {
+        display: none;
+    }
+
+    .section-3-1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title-3 {
+        padding: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        gap: 0;
+    }
+}
+
+@media (max-width : 768px) {
+    .section-3-1 a{
+        padding: 10px;
+    }
+
+    .section-3-1 p{
+        font-size: 14px;
+    }
+}
+
+/* section 4 livre */
+
+.section-4 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+}
+
+.title-4 {
+    display: flex;
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+    border-top: 1px solid var(--accent);
+    gap: 2rem;
+}
+
+.section-4-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.section-4-2 a {
+    margin-top: 20px;
+    padding: 20px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.section-4-2 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.section-4-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.title-4:has(.section-4-2 a:hover) .section-4-1 img {
+    box-shadow: 0 0 100px var(--primary);
+    transform: scale(1.028);
+    transition: transform .45s, box-shadow .45s;
+}
+
+.section-4-1 img {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    margin-right: auto;
+}
+
+@media (max-width : 1024px) {
+    .section-4-1 {
+        display: none;
+    }
+
+    .section-4-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title-4 {
+        padding: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        gap: 0;
+    }
+}
+
+@media (max-width : 768px) {
+    .section-4-2 a{
+        padding: 10px;
+    }
+
+    .section-4-2 p{
+        font-size: 14px;
+    }
+}
+
+/* section 5 encyclopedie */
+
+.section-5 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+}
+
+.title-5 {
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    gap: 2rem;
+    border-top: 1px solid var(--accent);
+}
+
+.section-5-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-5-1 a {
+    margin-top: 20px;
+    padding: 20px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.section-5-1 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.section-5-2 {
+    display: flex;
+}
+
+.title-5:has(.section-5-1 a:hover) .section-5-2 img {
+    box-shadow: 0 0 100px var(--primary);
+    transform: scale(1.028);
+    transition: transform .45s, box-shadow .45s;
+}
+
+.section-5-2 img {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    margin-right: auto;
+}
+
+@media (max-width : 1024px) {
+    .section-5-2 {
+        display: none;
+    }
+
+    .section-5-1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title-5 {
+        padding: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        gap: 0;
+    }
+}
+
+@media (max-width : 768px) {
+    .section-5-1 a{
+        padding: 10px;
+    }
+
+    .section-5-1 p{
+        font-size: 14px;
+    }
+}
+
+/* section 6 jeux */
+
+.section-6 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-6 {
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    gap: 2rem;
+    border-top: 1px solid var(--accent);
+}
+
+.section-6-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-6-2 a {
+    margin-top: 20px;
+    padding: 20px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.section-6-2 a:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.section-6-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-6:has(.section-6-2 a:hover) .section-6-1 img {
+    box-shadow: 0 0 100px var(--primary);
+    transform: scale(1.028);
+    transition: transform .45s, box-shadow .45s;
+}
+
+.section-6-1 img {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    margin-right: auto;
+}
+
+@media (max-width : 1024px) {
+    .section-6-1 {
+        display: none;
+    }
+
+    .section-6-2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title-6 {
+        padding: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        gap: 0;
+    }
+}
+
+@media (max-width : 768px) {
+    .section-6-2 a{
+        padding: 10px;
+    }
+
+    .section-6-2 p{
+        font-size: 14px;
+    }
+}

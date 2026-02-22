@@ -1,0 +1,247 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+    --primary: #0f172a;
+    --secondary: #151e34;
+    --primary-hover: #5fa3f8;
+    --accent: #1c2743;
+}
+
+/* ========================== */
+/*        PAGE CONTACT        */
+/* ========================== */
+
+body {
+    background-color: var(--primary);
+    margin: 0;
+    padding: 0;
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+/* section 1 */
+
+.section-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1rem;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.section-1 h2 {
+    font-size: 2.5rem;
+    padding-bottom: 10px;
+}
+
+.section-1 p {
+    font-size: 1rem;
+    margin-bottom: 4rem;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+
+/* section 2 */
+
+.section-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+.global-mail {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.section-2 input {
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border: 1px solid #334155;
+    background: #1e293b;
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+.section-2 input::placeholder {
+    font-family: 'Cinzel', sans-serif;
+}
+
+.section-2 .message {
+    color: #fff;
+    border: none;
+    padding: 5px;
+    height: 200px;
+    resize: none;
+    border: 1px solid #334155;
+    background: #1e293b;
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+.section-2 .message::placeholder {
+    font-family: 'Cinzel', sans-serif;
+}
+
+.section-2 button {
+    text-decoration: none;
+    border: none;
+    padding: 10px;
+    transition: .3s;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #334155;
+    background: #1e293b;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.section-2 button:hover {
+    color: var(--secondary);
+    background: var(--primary-hover);
+}
+
+#contact-form.active {
+    pointer-events: none;
+    filter: blur(3px);
+    opacity: 0.6;
+}
+
+#cooldown-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: none;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.titre-contact {
+    color: #94a3b8;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.section-2 input:focus,
+.section-2 .message:focus {
+    outline: 2px solid var(--primary-hover);
+    outline-offset: 2px;
+}
+
+.contact-de-global {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.contact-de {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+.global-mail i{
+    display: inline-block; 
+    animation: fadeUp 0.6s ease-out forwards;
+    margin-bottom: 20px;
+    font-size: 5rem;
+}
+
+.global-mail p{
+    font-family: 'serif';
+    font-size: 2rem;
+}
+
+
+/* Adaptation à tout type d'écran */
+
+@media (max-width: 1024px) {
+    .section-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .global-mail {
+        width: 90%;
+        max-width: 420px; 
+        margin: 0 auto;   
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 50px;
+    }
+
+    .section-2 input,
+    .section-2 .message,
+    .section-2 button {
+        width: 100%;
+    }
+
+    .section-1 p{
+        font-size: 14px;
+    }
+
+    .section-1{
+        width: 100%;
+    }
+}

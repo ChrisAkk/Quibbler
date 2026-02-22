@@ -1,0 +1,134 @@
+from flask import *
+from flask_mail import Mail, Message
+from flask_admin.model.form import InlineFormAdmin # type: ignore
+from flask_admin.contrib.sqla import ModelView # type: ignore
+from flask_admin import Admin, AdminIndexView, expose # type: ignore
+from models import db, User, Progress, House
+from routes import routes_bp
+import os
+
+app = Flask(__name__)
+app.secret_key = 'une_cle_secrete_pour_la_session'
+
+# --- Base de données ---
+db_name = 'quibbler.db'
+db_path = os.path.abspath(db_name)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_name}'
+db.init_app(app)
+
+
+# --- Flask-Mail ---
+app.config["MAIL_SERVER"] = 'smtp.gmail.com'
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USERNAME"] = 'chrisaboukaram@gmail.com'
+app.config["MAIL_PASSWORD"] = 'omplywdzylkpivbu'
+app.config["MAIL_USE_TLS"] = False
+app.config["MAIL_USE_SSL"] = True
+mail = Mail(app)
+
+# ------------------- #
+# --- Class Admin --- #
+# ------------------- #
+
+class MyAdminIndexView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return redirect(url_for('routes.login'))
+
+        user = User.query.get(user_id)
+        if not user or not getattr(user, 'admin', 0):
+            return redirect(url_for('routes.admin_only'))
+
+        return self.render('admin/home.html')
+
+admin = Admin(app, name="", index_view=MyAdminIndexView())
+
+class UserAdmin(ModelView):
+    inline_models = [Progress]
+    extra_css = ['/static/css/pages/admin.css']
+    column_list = ['id', 'username', 'admin', 'authorized']
+    can_create = True
+    can_edit = True
+    can_delete = True
+
+    def is_accessible(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return False
+        user = User.query.get(user_id)
+        return user and getattr(user, 'admin', 0) == 1
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('routes.admin_only'))
+
+
+class HouseAdmin(ModelView):
+    extra_css = ['/static/css/pages/admin.css']
+    column_list = ['id', 'name', 'points']
+    can_create = True
+    can_edit = True
+    can_delete = True
+
+    def is_accessible(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return False
+        user = User.query.get(user_id)
+        return user and getattr(user, 'admin', 0) == 1
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('routes.admin_only'))
+
+admin.add_view(UserAdmin(User, db.session))
+admin.add_view(HouseAdmin(House, db.session))
+
+# --- Blueprints ---
+app.register_blueprint(routes_bp)
+
+if __name__ == "__main__":
+    with app.app_context():
+        try:
+            db.create_all()
+            print("✅ Base de données et tables créées.")
+        
+        except Exception as e:
+            print(f"tables déjà existantes ou probleme {e}")
+
+        if not User.query.filter_by(username="ChrisAkk").first():
+            new_user = User(username="ChrisAkk", password="Chr1s.Akk")
+            db.session.add(new_user)
+            db.session.commit()
+            print("✅ Utilisateur admin créé.")
+
+        for user in User.query.all():
+            print(user.id, user.username)
+
+        orphan_progress = Progress.query.filter(
+            ~Progress.user.has()
+        ).all()  # récupère toutes les Progress dont le user n'existe plus
+
+        for progress in orphan_progress:
+            db.session.delete(progress)
+        db.session.commit()
+
+    app.run(host="0.0.0.0", port=5001, debug=True)
+
+    # ---- Outils SQL ----
+
+    # sqlite3 instance/quibbler.db                                                              -> acceder à SQL
+    # SELECT * FROM user;                                                                       -> voir les données contenues dans la table
+    # DELETE FROM nom_table WHERE nom_colonne = valeur                                          -> supprimer un élément d'une colonne
+    # DELETE FROM nom_table                                                                     -> supprimer tout une table
+    # UPDATE nom_table SET colonne = valeur;                                                    -> modifier une colonne
+    # ALTER TABLE nom_table ADD COLUMN nouvelle_colonne TYPE DEFAULT valeur_par_defaut;         -> ajouter une colonne
+    # PRAGMA table_info(nom_table);                                                             -> voir la structure de la table
+    # .exit                                                                                     -> quitter SQL
+
+    # ---- Outils Lancement ----
+
+    # -> python3 app.py                                                                         -> lancer le site en local 
+    # -> ngrok http 5001                                                                        -> lancer le site en ligne (uniquement pour teste)
+

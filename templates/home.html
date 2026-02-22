@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/home.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body>
+    <header>
+        <div class="global-header">
+            <button class="menu-btn-phone">
+                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
+                <div class="phone-menu">
+                    <a class="exit"><i class="ri-close-line"></i></a>
+                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    {% if user.admin == 1 %}
+                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    {%endif%}
+                </div>
+            </button>
+            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
+            <div class="menu">
+                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
+                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
+                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
+                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
+                <button class="menu-btn pc-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    <div class="profil-menu">
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        {% if user.admin == 1 %}
+                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        {%endif%}
+                    </div>
+                </button>
+                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Début de la page -->
+
+    <main>
+        <div class="global-home">
+            <div class="section-1">
+                <div class="title-1">
+                    <h1>Il était une fois… un monde de sorciers</h1>
+                    <p> Les <span>flammes</span> dansent dans l’âtre, projetant une lumière dorée sur les murs de ta
+                        maison. Dans ta
+                        salle commune, chaque pierre respire la <span>magie</span> et chaque instant promet
+                        l’<span>aventure</span>. Installe-toi
+                        près du feu : les tableaux murmurent, les chandelles flottent, et une chouette vient de livrer
+                        le courrier. Tu es enfin chez toi à <span>Poudlard</span>.</p>
+                    <button id="scroll-btn">Voir plus</button>
+                </div>
+            </div>
+            <div class="section-2">
+                <div class="title-2">
+                    <h1 class="decoration-title">Bienvenue Dans ta salle commune</h1>
+                    <p>Entrez, la magie commence ici…</p>
+                </div>
+                <div class="section-2-1">
+                    <a href="{{url_for('routes.to_profil')}}" class="section-2-1-1">
+                        <h2>Profil</h2>
+                        <p>
+                            Entre dans ta salle <span>secrète</span>, là où ton identité <span>magique</span> prend
+                            forme. Ici, tu peux ajuster ton
+                            nom d’utilisateur, ton mot de passe, ou encore ta maison de <span>Poudlard</span> si la
+                            tienne ne te correspond plus.
+                            C’est ton espace, ton <span>grimoire</span> — celui où chaque sort, chaque changement,
+                            révèle un peu plus qui tu es vraiment.
+                        </p>
+
+                    </a>
+                    <a href="{{url_for('routes.to_informations')}}" class="section-2-1-2">
+                        <h2>Informations</h2>
+                        <p>
+                            Explore les <span>fondations</span> du site, découvre son histoire, son but et les coulisses
+                            de sa création. Comme un vieux <span>parchemin</span>, cette section t’explique le pourquoi
+                            du projet et le sens caché derrière chaque page. Si tu veux comprendre le monde dans lequel
+                            tu navigues, c’est ici que la <span>lumière</span> se fait sur les mystères.
+                        </p>
+
+                    </a>
+                    <a href="{{url_for('routes.to_contact')}}" class="section-2-1-3">
+                        <h2>Contact</h2>
+                        <p>
+                            Besoin d’envoyer un message, une question, ou simplement un <span>hibou</span> numérique ?
+                            Cette section
+                            t’ouvre le passage direct vers moi. Rédige ton <span>sortilège</span> sous forme de mail et
+                            laisse la
+                            <span>magie</span> opérer : je te répondrai dès que la chouette aura trouvé son chemin
+                            jusqu’à moi.
+                        </p>
+
+                    </a>
+                </div>
+            </div>
+            <div class="section-3">
+                <div class="title-3">
+                    <div class="section-3-1">
+                        <h1>I - Les histoires prennent vie</h1>
+                        <p>
+                            Dans cette salle magique, chaque <span>film</span> est un voyage unique : des rires aux
+                            frissons, des mystères aux aventures <span>fantastiques</span>. Ici, les histoires sautent
+                            de l’<span>écran</span>
+                            pour vous emporter dans des mondes insoupçonnés, où chaque image est un pas dans
+                            l’imaginaire.
+                        </p>
+
+                        <a href="{{url_for('routes.to_films')}}">Explorer les films</a>
+                    </div>
+                    <div class="section-3-2">
+                        <img src="../static/images/home-photo-film.png">
+                    </div>
+                </div>
+            </div>
+            <div class="section-4">
+                <div class="title-4">
+                    <div class="section-4-1">
+                        <img src="../static/images/home-photo-livre.png">
+                    </div>
+                    <div class="section-4-2">
+                        <h1>II - Les mondes des livres</h1>
+                        <p>
+                            Chaque <span>livre</span> est une porte vers un univers <span>secret</span>, où les mots se
+                            transforment
+                            en aventures
+                            et les pages en voyages. Plongez dans des récits <span>fantastiques</span>, des mystères
+                            intrigants ou
+                            des histoires touchantes, et laissez votre imagination vous emporter.
+                        </p>
+
+                        <a href="{{url_for('routes.to_livres')}}">Explorer les livres</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-5">
+                <div class="title-5">
+                    <div class="section-5-1">
+                        <h1>III - Éclat de Magie</h1>
+                        <p>
+                            Plongez dans l’<span>encyclopédie</span> ultime de l’univers de Harry Potter. Ici, chaque
+                            page révèle des
+                            <span>secrets</span>, des anecdotes et des merveilles cachées derrière chaque sort, chaque
+                            créature et
+                            chaque aventure. Un guide pour explorer tous les coins <span>magiques</span> et garder
+                            l’étincelle de la
+                            magie toujours vivante.
+                        </p>
+
+
+                        <a href="{{url_for('routes.to_encyclopedie')}}">Découvrir l’encyclopédie</a>
+                    </div>
+                    <div class="section-5-2">
+                        <img src="../static/images/home-photo-encyclopedie.png">
+                    </div>
+                </div>
+            </div>
+            <div class="section-6">
+                <div class="title-6">
+                    <div class="section-6-1">
+                        <img src="../static/images/home-photo-jeux.png">
+                    </div>
+                    <div class="section-6-2">
+                        <h1>IV - Teste ta magie</h1>
+                        <p>
+                            As-tu vraiment l’<span>étoffe</span> d’un sorcier accompli ?
+                            Les couloirs du château bruissent de mille mystères, mais seuls les esprits les plus vifs
+                            savent en percer les <span>secrets</span>. Ici, les quiz t’invitent à prouver ta maîtrise
+                            des sorts,
+                            potions et créatures enchantées.
+                            Relève les défis, réponds avec sagacité et découvre à quelle maison appartiendrait un mage
+                            de ton <span>niveau</span> !
+                        </p>
+
+                        <a href="{{url_for('routes.to_jeux')}}">Voir tous les quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fin de la page -->
+
+    <footer>
+        <img src="/static/images/background-footer.png">
+        <div class="all-footer">
+            <p>copyright 2025 | Quibbler</p>
+            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
+            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
+            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
+            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+</body>
+
+</html>

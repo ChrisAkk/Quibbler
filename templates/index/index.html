@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo-v2.png')}}" type="image/jpeg">
+</head>
+
+<body>
+    <main>
+        <div class="step-1">
+            <div class="global-step-1">
+                <h1>Bienvenue dans Quibbler</h1>
+                <p>Parcours les couloirs de Poudlard, redécouvre les films et les livres qui ont marqué des générations,
+                    et plonge dans les mystères du monde des sorciers.
+                    Quibbler t’ouvre ses portes : explore, apprends, joue et laisse-toi emporter par l’enchantement à
+                    chaque page.</p>
+                <a href="{{ url_for('routes.login')}}">Commencer</a>
+            </div>
+
+            <div class="background"></div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename = 'javascript/index.js')}}"></script>
+</body>
+
+</html>

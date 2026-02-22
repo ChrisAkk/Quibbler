@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo-v2.png')}}" type="image/jpeg">
+</head>
+
+<body>
+    <main>
+        <div class="step-3">
+            <div class="background"><a class="back" href="{{ url_for('routes.to_welcome')}}"><i
+                        class="ri-arrow-left-line"></i></a></div>
+            <a class="back-2" href="{{ url_for('routes.to_welcome')}}"><i class="ri-arrow-left-line"></i></a>
+            <div class="form-content">
+                <h1>Inscris-toi</h1>
+                {% if sign_up_erreur %}
+                <p id="error-message-sign" class="error">{{ sign_up_erreur }}</p>
+                {% endif %}
+                <form action="{{ url_for('routes.sign_up') }}" method="POST">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input style="font-family: serif;" type="text" id="new-username" name="username" placeholder="Votre nom d'utilisateur" required>
+                    <label for="password">Mot de passe</label>
+                    <input style="font-family: serif;" type="password" id="new-password" name="password" placeholder="Votre mot de passe" required>
+                    <div class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
+                    <ul class="password-requirements">
+                        <li id="length" class="invalid">Au moins 8 caractères</li>
+                        <li id="uppercase" class="invalid">Une majuscule</li>
+                        <li id="lowercase" class="invalid">Une minuscule</li>
+                        <li id="number" class="invalid">Un chiffre</li>
+                        <li id="special" class="invalid">Un caractère spécial</li>
+                    </ul>
+                    <input type="submit" value="Envoyer" class="btn-submmit">
+                </form>
+                <a id="sign-up" href="{{ url_for('routes.login')}}">Deja un compte ? Traverse le portail et connecte-toi!</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename = 'javascript/index.js')}}"></script>
+</body>
+
+</html>

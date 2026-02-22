@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quibbler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/livres.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+
+<body class="cloud">
+    <header>
+        <div class="global-header">
+            <button class="menu-btn-phone">
+                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
+                <div class="phone-menu">
+                    <a class="exit"><i class="ri-close-line"></i></a>
+                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    {% if user.admin == 1 %}
+                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    {%endif%}
+                </div>
+            </button>
+            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
+            <div class="menu">
+                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
+                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
+                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
+                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
+                <button class="menu-btn pc-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    <div class="profil-menu">
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        {% if user.admin == 1 %}
+                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        {%endif%}
+                    </div>
+                </button>
+                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Début de la page -->
+
+    <main>
+        <div class="global-livres">
+            <div class="section">
+                <div class="background-section-0">
+                    <div class="section-0">
+                        <h1>Livres</h1>
+                        <p>Le premier <span>livre</span> de la saga Harry Potter, Harry Potter à l’école des sorciers, a été publié
+                            par
+                            Bloomsbury en <span>1997</span> et a immédiatement rencontré un <span>immense</span> succès, aussi bien auprès du
+                            public
+                            que
+                            de la critique. Depuis, six autres romans à succès, trois ouvrages complémentaires, une
+                            pièce de
+                            théâtre et deux scénarios de films ont vu le jour.
+                            Les livres Harry Potter ont été traduits en plus de <span>80 langues</span>, ont remporté de nombreux
+                            prix et
+                            se
+                            sont vendus à plus de 500 millions d’exemplaires à travers le monde, faisant de cette série
+                            la
+                            plus
+                            vendue de l’<span>histoire</span> de la littérature.</p>
+                    </div>
+                </div>
+                <h2>Harry Potter</h2>
+                <div class="section-1">
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/1.webp')}}">
+                            <a href="{{url_for('routes.book', book = '1.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/2.webp')}}">
+                            <a href="{{url_for('routes.book', book = '2.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/3.webp')}}">
+                            <a href="{{url_for('routes.book', book = '3.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/4.webp')}}">
+                            <a href="{{url_for('routes.book', book = '4.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/5.webp')}}">
+                            <a href="{{url_for('routes.book', book = '5.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/6.webp')}}">
+                            <a href="{{url_for('routes.book', book = '6.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/7.webp')}}">
+                            <a href="{{url_for('routes.book', book = '7.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/8.webp')}}">
+                            <a href="{{url_for('routes.book', book = '8.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <h2>Les animaux fantastiques</h2>
+                <div class="section-2">
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/9.webp')}}">
+                            <a href="{{url_for('routes.book', book = '9.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/10.webp')}}">
+                            <a href="{{url_for('routes.book', book = '10.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/11.webp')}}">
+                            <a href="{{url_for('routes.book', book = '11.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <h2>La bibliothèque de Poudlard</h2>
+                <div class="section-3">
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/12.webp')}}">
+                            <a href="{{url_for('routes.book', book = '12.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/13.webp')}}">
+                            <a href="{{url_for('routes.book', book = '13.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="book">
+                        <div class="livre">
+                            <img src="{{ url_for('static', filename = 'images/couvertures/14.webp')}}">
+                            <a href="{{url_for('routes.book', book = '14.pdf')}}"><i class="ri-book-open-line"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fin de la page -->
+
+    <footer>
+        <img src="/static/images/background-footer.png">
+        <div class="all-footer">
+            <p>copyright 2025 | Quibbler</p>
+            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
+            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
+            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
+            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
+</body>
+
+</html>

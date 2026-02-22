@@ -1,0 +1,485 @@
+/* ====================================== */
+/*        IMPORTANT ET RACCOURCIS         */
+/* ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url('/static/autres/HARRYP__.TTF') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+}
+
+:root {
+    --primary: #0f172a;
+    --secondary: #151e34;
+    --primary-hover: #5fa3f8;
+    --accent: #1c2743;
+}
+
+/* =============================== */
+/*        PAGE ENCYCLOPÉDIE        */
+/* =============================== */
+
+body {
+    background: var(--primary);
+}
+
+body.cloud::before {
+    content: "";
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../images/drago.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100%;
+    z-index: -1;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+body.cloud.loaded::before {
+    opacity: 1;
+}
+
+.global-header a:hover {
+    color: var(--primary-hover);
+}
+
+.menu-btn.active {
+    border: none;
+}
+
+/* section 1 */
+
+.section-1 {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.title-1 {
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.title-1 h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.title-1 p {
+    font-size: 1rem;
+}
+
+.title-1 button {
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    background: transparent;
+    border: 1px #fff solid;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 1rem;
+}
+
+.title-1 button:hover {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+/* section 2 */
+
+.section-2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: var(--secondary);
+    transform: skewY(5deg);
+    width: 100%;
+}
+
+.section-2 p {
+    text-align: center;
+    font-size: 1rem;
+    transform: skewY(-5deg);
+    width: 70%;
+}
+
+/* section 3 */
+
+.global-search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.global-search-bar p {
+    padding: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+}
+
+.global-search-bar p i {
+    margin: 2px;
+}
+
+.global-search-bar button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+}
+
+.global-search-bar button:hover {
+    background: var(--primary-hover);
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-family: serif;
+    border: 1px solid var(--accent);
+    width: 50rem;
+    border-radius: 20px;
+    background: transparent;
+    padding: 10px;
+    color: #fff;
+}
+
+.global-encyclopedie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.encyclopedie {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-top: 20px;
+    gap: 10px;
+    margin-bottom: 10rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) transparent;
+}
+
+.encyclopedie div {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    border: 1px solid var(--accent);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 2rem;
+    overflow-y: auto;
+}
+
+.encyclopedie button {
+    display: flex;
+    background: none;
+    border: none;
+    font-family: serif;
+    text-align: left;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.encyclopedie button:hover {
+    background-color: var(--accent);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.col-1 button,
+.col-2 button,
+.col-3 button {
+    font-size: 1.2rem;
+}
+
+.col-4 p {
+    font-size: 1rem;
+}
+
+button.active {
+    border: 1px solid var(--accent);
+}
+
+.global-col h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.global-col {
+    flex: 0 0 0%;
+    width: 0;
+    opacity: 0;
+    transition: flex 0.5s ease, width 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
+    overflow: hidden;
+}
+
+.global-col.visible2 {
+    flex: 1 0 auto;
+    opacity: 1;
+}
+
+#global-col-4.visible2 {
+    flex: 0 0 50%;
+}
+
+.hidden-by-search {
+    display: none !important;
+}
+
+/* section 4 */
+
+.section-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10rem;
+    width: 100%;
+    background: var(--secondary);
+    padding: 5rem;
+    transform: skewY(5deg);
+}
+
+.section-4 h2 {
+    font-size: 2rem;
+    transform: skewY(-5deg);
+}
+
+/* section 5 */
+
+.section-5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.anecdote,
+.anecdote-2 {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+    overflow: hidden;
+    border-radius: 10px;
+    align-items: stretch;
+}
+
+.anecdote .explication-citation {
+    background: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.anecdote img,
+.anecdote-2 img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    z-index: -9999;
+    margin-bottom: 50px;
+}
+
+.anecdote .explication-citation {
+    width: 50%;
+    padding: 5rem;
+    margin-left: -50px;
+    margin-top: 50px;
+}
+
+.anecdote-2 .explication-citation {
+    width: 50%;
+    padding: 5rem;
+    margin-right: -50px;
+    margin-top: 50px;
+}
+
+.anecdote .explication-citation h2 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.anecdote .explication-citation p {
+    font-size: 14px;
+}
+
+
+.anecdote-1 .explication-citation {
+    width: 100%;
+    padding: 5rem;
+    height: auto;
+}
+
+.choix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 5rem;
+    margin-top: 60px;
+}
+
+.choix button {
+    background: none;
+    border: 1px solid #fff;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.choix button:hover,
+.choix button.active {
+    background: #fff;
+    border: 1px solid #fff;
+    color: var(--primary);
+}
+
+.choix button:hover {
+    box-shadow:
+        20px 15px 30px #d4d4d4,
+        -25px 20px 40px #d4d4d4,
+        30px -20px 50px #d4d4d4,
+        -35px -25px 60px #d4d4d4,
+        0px 0px 80px #d4d4d4,
+        40px 10px 70px #d4d4d4,
+        -40px 15px 50px #d4d4d4,
+        25px -30px 60px #d4d4d4,
+        -30px -35px 55px #d4d4d4,
+        0px 0px 100px #d4d4d4;
+}
+
+@media (max-width : 1024px) {
+    .encyclopedie {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .global-col.visible2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .section-1 h1 {
+        font-size: 2rem;
+        margin-top: 5rem;
+    }
+
+    .section-2 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .section-1 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .global-search-bar button {
+        display: none;
+    }
+
+    .anecdote .explication-citation {
+        padding: 1.5rem;
+        width: 100%;
+        margin: 0;
+    }
+
+    .anecdote .explication-citation h2 {
+        font-size: 1rem;
+    }
+
+    .anecdote .explication-citation p {
+        font-size: 12px;
+    }
+
+    .choix button:hover {
+        box-shadow: none;
+    }
+}
+
+@media (max-width : 768px) {
+    .search-bar {
+        width: 20rem;
+    }
+
+    .explication-encyclopedie p {
+        font-size: 1rem;
+    }
+
+    .anecdote img {
+        display: none;
+    }
+
+    .section-2 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .section-2 p {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .anecdote,
+    .anecdote-2 {
+        width: 90%;
+    }
+
+    .choix {
+        gap: 1rem;
+    }
+
+    .global-search-bar button {
+        display: flex;
+    }
+
+    .section-4{
+        margin-bottom: 5rem;
+        padding: 3rem;
+    }
+
+    .encyclopedie{
+        margin-bottom: 5rem;
+    }
+}
