@@ -118,22 +118,10 @@ with app.app_context():
             db.session.delete(progress)
         db.session.commit()
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)
-
-    # ---- Outils SQL ----
-
-    # sqlite3 instance/quibbler.db                                                              -> acceder à SQL
-    # SELECT * FROM user;                                                                       -> voir les données contenues dans la table
-    # DELETE FROM nom_table WHERE nom_colonne = valeur                                          -> supprimer un élément d'une colonne
-    # DELETE FROM nom_table                                                                     -> supprimer tout une table
-    # UPDATE nom_table SET colonne = valeur;                                                    -> modifier une colonne
-    # ALTER TABLE nom_table ADD COLUMN nouvelle_colonne TYPE DEFAULT valeur_par_defaut;         -> ajouter une colonne
-    # PRAGMA table_info(nom_table);                                                             -> voir la structure de la table
-    # .exit                                                                                     -> quitter SQL
-
-    # ---- Outils Lancement ----
-
-    # -> python3 app.py                                                                         -> lancer le site en local 
-    # -> ngrok http 5001                                                                        -> lancer le site en ligne (uniquement pour teste)
 
