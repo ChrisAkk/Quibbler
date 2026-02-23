@@ -102,6 +102,7 @@ with app.app_context():
 
         if not User.query.filter_by(username="ChrisAkk").first():
             new_user = User(username="ChrisAkk", password="Chr1s.Akk")
+            new_user.admin = 1
             db.session.add(new_user)
             db.session.commit()
             print("✅ Utilisateur admin créé.")
