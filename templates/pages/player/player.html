@@ -39,7 +39,11 @@
                 <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
                 <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
                 <button class="menu-btn pc-only">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    {% if user.profil_picture.startswith('http') %}
+                        <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                     <div class="profil-menu">
                         <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
                         <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
@@ -51,7 +55,11 @@
                     </div>
                 </button>
                 <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    {% if user.profil_picture.startswith('http') %}
+                        <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                 </a>
             </div>
         </div>

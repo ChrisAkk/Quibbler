@@ -9,13 +9,23 @@ from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 from random import choice
 import json
 import os
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
 
 
 routes_bp = Blueprint('routes', __name__)
 
+cloudinary.config( 
+  cloud_name = "dokfo4ty2", 
+  api_key = "355469787885527", 
+  api_secret = "Wggzgre2F7XL6VVWvmEZk4GaDKk",
+  secure = True
+)
+
 # -------------------------------- #
 # --- Inscription et Connexion --- #
-# -------------------------------- #
+# -------------------------------- #pip
 # Route de connexion
 @routes_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -92,9 +102,6 @@ def upload_profile_picture():
     if 'user_id' not in session:
         return redirect(url_for('routes.login'))
     
-    UPLOAD_FOLDER = 'static/uploads'
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    
     user = User.query.get(session['user_id'])
 
     if "file" not in request.files:
@@ -102,18 +109,11 @@ def upload_profile_picture():
     
     file = request.files['file']
     
-    if file.filename == "":
-        return redirect(url_for('routes.profil'))
-
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
-        file.save(filepath)
-
-        user.profil_picture = filename
+        upload_result = cloudinary.uploader.upload(file)
+        
+        user.profil_picture = upload_result['secure_url']
         db.session.commit()
-    else:
-        return "format non autorisé", 404
     
     return redirect(url_for('routes.to_profil'))
        

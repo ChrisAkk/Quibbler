@@ -18,14 +18,19 @@
                 <div class="phone-menu">
                     <a class="exit"><i class="ri-close-line"></i></a>
                     <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
+                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i>
+                        Livres</a>
+                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i>
+                        Encyclopédie</a>
                     <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i
+                            class="ri-information-line"></i> Informations</i></a>
+                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i>
+                        Contact</a>
+                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i>
+                        Déconnexion</a>
                     {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                    <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
                     {%endif%}
                 </div>
             </button>
@@ -36,19 +41,32 @@
                 <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
                 <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
                 <button class="menu-btn pc-only">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    {% if user.profil_picture.startswith('http') %}
+                        <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                     <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
+                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i>
+                            Profil</a>
+                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i
+                                class="ri-information-line"></i> Informations</a>
+                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i>
+                            Contact</a>
+                        <a class="searchable" href="{{url_for('routes.logout')}}"><i
+                                class="ri-logout-circle-r-line"></i> Déconnexion</a>
                         {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
+                        <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i>
+                            Admin</a>
                         {%endif%}
                     </div>
                 </button>
                 <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    {% if user.profil_picture.startswith('http') %}
+                        <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                 </a>
             </div>
         </div>
@@ -74,7 +92,9 @@
                 <div class="title-2">
                     <h1 class="decoration-title">Bienvenue Dans ta salle commune</h1>
                     <p>Entrez, la magie commence ici…</p>
-                    <p style="color: red;">Bienvenue sur la version Bêta du Quibbler ! Le site est encore en plein développement : quelques nargoles pourraient causer des bugs, mais vous avez ici un avant-goût de ce qui vous attend. Merci de votre patience !</p>
+                    <p style="color: red;">Bienvenue sur la version Bêta du Quibbler ! Le site est encore en plein
+                        développement : quelques nargoles pourraient causer des bugs, mais vous avez ici un avant-goût
+                        de ce qui vous attend. Merci de votre patience !</p>
                 </div>
                 <div class="section-2-1">
                     <a href="{{url_for('routes.to_profil')}}" class="section-2-1-1">
