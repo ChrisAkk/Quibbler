@@ -68,7 +68,7 @@
         {% elif mode == 'choixpeau' %}
 
             <div class="score-maisons">
-                <img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}" class="image-maison">
+                <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}" class="image-maison">
                 <h2 class="score">{{maison}}</h2>
                 <p>{{ desc_maisons }}</p>
             </div>

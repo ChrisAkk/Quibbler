@@ -63,10 +63,10 @@
                 <div class="maison-profil">
                     {% if maison == "Gryffondor" or maison == "Poufsouffle" or maison == "Serdaigle" or maison ==
                     "Serpentard" %}
-                    <div><img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}"></div>
+                    <div><img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}"></div>
                     {% else %}
                     <a href="{{ url_for('routes.to_jeux')}}">
-                        <img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}">
+                        <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}">
                         <i class="ri-pencil-line"></i>
                     </a>
                     {%endif%}
