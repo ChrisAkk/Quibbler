@@ -11,10 +11,14 @@ app = Flask(__name__)
 app.secret_key = 'une_cle_secrete_pour_la_session'
 
 # --- Base de données ---
-db_name = 'quibbler.db'
-db_path = os.path.abspath(db_name)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_name}'
+uri = os.environ.get('DATABASE_URL', f'sqlite:///{os.path.abspath("quibbler.db")}')
+
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
@@ -86,10 +90,9 @@ admin.add_view(UserAdmin(User, db.session))
 admin.add_view(HouseAdmin(House, db.session))
 
 # --- Blueprints ---
-app.register_blueprint(routes_bp)
+app.register_blueprint(routes_bp) 
 
-if __name__ == "__main__":
-    with app.app_context():
+with app.app_context():
         try:
             db.create_all()
             print("✅ Base de données et tables créées.")
@@ -108,12 +111,13 @@ if __name__ == "__main__":
 
         orphan_progress = Progress.query.filter(
             ~Progress.user.has()
-        ).all()  # récupère toutes les Progress dont le user n'existe plus
+        ).all()
 
         for progress in orphan_progress:
             db.session.delete(progress)
         db.session.commit()
 
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)
 
     # ---- Outils SQL ----
