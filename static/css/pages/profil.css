@@ -20,7 +20,7 @@
 :root {
     --primary: #0f172a;
     --secondary: #151e34;
-    --primary-hover: #5fa3f8;
+    --primary-hover: #ca6c87;
     --accent: #1c2743;
 }
 
@@ -221,6 +221,7 @@ h2 {
     align-items: center;
     font-size: 1.3rem;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .h2-profil {

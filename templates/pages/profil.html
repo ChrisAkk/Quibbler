@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/profil.css') }}">
 {% endblock %}
 
+{% block title %}Quibbler | Profil{% endblock %}
+
 {% block content %}
 <div class="global-profil">
     <h1 class="decoration-title">Profil</h1>
@@ -282,4 +284,5 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="{{ url_for('static', filename = 'javascript/profil.js')}}"></script>
 {% endblock %}

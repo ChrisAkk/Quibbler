@@ -20,7 +20,7 @@
 :root {
     --primary: #0f172a;
     --secondary: #151e34;
-    --primary-hover: #5fa3f8;
+    --primary-hover: #ca6c87;
     --accent: #1c2743;
 }
 
@@ -34,12 +34,16 @@ body {
     overflow: hidden;
 }
 
+span {
+    color: var(--primary-hover);
+}
+
 .spark {
     position: absolute;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--primary-hover);
     pointer-events: none;
     mix-blend-mode: screen;
     transform: translate(-50%, -50%);
