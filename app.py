@@ -96,28 +96,6 @@ app.register_blueprint(routes_bp)
 def sitemap():
     return send_from_directory('static', 'sitemap.xml')
 
-#with app.app_context():
-    #try:
-        #db.create_all()
-        #print("✅ Base de données et tables créées.")
-        
-        #if not User.query.filter_by(username="ChrisAkk").first():
-            #new_user = User(username="ChrisAkk", password="Chr1s.Akk")
-            #new_user.admin = 1
-            #db.session.add(new_user)
-            #db.session.commit()
-            #print("✅ Utilisateur admin créé.")
-
-        # for user in User.query.all():
-        #     print(user.id, user.username)
-        # orphan_progress = Progress.query.filter(~Progress.user.has()).all()
-        # for progress in orphan_progress:
-        #     db.session.delete(progress)
-        # db.session.commit()
-        
-    #except Exception as e:
-        #print(f"Erreur d'initialisation : {e}")
-
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5001))
     app.run(host="0.0.0.0", port=port, debug=False)

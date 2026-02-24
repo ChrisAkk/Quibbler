@@ -50,7 +50,11 @@
             <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST"
                 enctype="multipart/form-data">
                 <label for="profil-picture-input">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
+                    {% if user.profil_picture.startswith('http') %}
+                    <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                     <i class="ri-camera-line"></i>
                 </label>
                 <input type="file" id="profil-picture-input" name="file" accept="image/*" style="display: none;">
@@ -63,11 +67,7 @@
                 <div><img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}"></div>
                 {% else %}
                 <a href="{{ url_for('routes.to_jeux')}}">
-                    {% if user.profil_picture.startswith('http') %}
-                    <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
+                    <img src="{{ url_for('static', filename='images/maisons/poudlard.png')}}">
                     <i class="ri-pencil-line"></i>
                 </a>
                 {%endif%}
