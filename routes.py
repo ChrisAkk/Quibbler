@@ -7,11 +7,12 @@ from flask_mail import Message
 from films import get_signed_url
 from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 from random import choice
+from cloudinary.utils import cloudinary_url # type: ignore
+import cloudinary # type: ignore
+import cloudinary.uploader # type: ignore
 import json
 import os
-import cloudinary
-import cloudinary.uploader
-from cloudinary.utils import cloudinary_url
+
 
 
 routes_bp = Blueprint('routes', __name__)
@@ -1694,3 +1695,14 @@ def set_book_favorite():
 
     db.session.commit()
     return jsonify({"status": "ok"})
+
+# healthcheck pour que la base de donnée soit toujours ouverte
+
+@routes_bp.route('/healthcheck')
+def healthcheck():
+    try:
+        from models import User
+        User.query.limit(1).all()
+        return "systeme outline", 200
+    except Exception as e:
+        return f"Database Offline : {str(e)}", 500
