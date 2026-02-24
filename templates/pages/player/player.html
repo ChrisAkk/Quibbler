@@ -1,174 +1,102 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/films.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="player-global-container">
+  <button id="back-btn"><i class="ri-arrow-left-line"></i></button>
+  <button id="favorite"><i id="heart-icon"
+      class=" {{ 'ri-heart-fill' if film_favorite else 'ri-heart-line' }}"></i></button>
 
 
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bon visionnnage !</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/films.css') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
-
-<body class="body-player">
-
-  <header>
-        <div class="global-header">
-            <button class="menu-btn-phone">
-                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
-                <div class="phone-menu">
-                    <a class="exit"><i class="ri-close-line"></i></a>
-                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
-                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                    {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                    {%endif%}
-                </div>
-            </button>
-            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
-            <div class="menu">
-                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
-                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
-                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
-                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
-                <button class="menu-btn pc-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                    <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                        {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                        {%endif%}
-                    </div>
-                </button>
-                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-    </header>
-
-  <main>
-    <div class="player-global-container">
-      <button id="back-btn"><i class="ri-arrow-left-line"></i></button>
-      <button id="favorite"><i id="heart-icon" class=" {{ 'ri-heart-fill' if film_favorite else 'ri-heart-line' }}"></i></button>
-
-
-      <div class="video-container">
-        {% if authorized == 1 %}
-          <video id="player" controls>
-            <source src="{{ video_url }}" type="video/mp4">
-            <div class="fallback-message">Votre navigateur ne supporte pas la vidéo.</div>
-          </video>
-        {% else %}
-          <div class="player">
-            <img src="../../../static/images/admin-film.webp">
-          </div>
-        {%endif%}
-      </div>
-
-
-      <div class="film-infos">
-        <div class="global-affiche-film">
-          <img src="{{ url_for('static', filename='images/affiches/' + poster)}}" alt="affiches du film" class="affiche-film">
-        </div>
-        <div class="film-details">
-          <h2 class="film-title">{{ title }}</h2>
-          <div class="film-details-p">
-            <p class="film-year">Date de Sortie : {{ year }}</p>
-            <p class="film-description">{{ description }}</p>
-          </div>
-        </div>
-      </div>
-
+  <div class="video-container">
+    {% if authorized == 1 %}
+    <video id="player" controls>
+      <source src="{{ video_url }}" type="video/mp4">
+      <div class="fallback-message">Votre navigateur ne supporte pas la vidéo.</div>
+    </video>
+    {% else %}
+    <div class="player">
+      <img src="../../../static/images/admin-film.webp">
     </div>
-  </main>
+    {%endif%}
+  </div>
 
-  <footer>
-        <img src="/static/images/background-footer.png">
-        <div class="all-footer">
-            <p>copyright 2025 | Quibbler</p>
-            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
-            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
-            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
-            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
-        </div>
-    </footer>
 
-  <script>
+  <div class="film-infos">
+    <div class="global-affiche-film">
+      <img src="{{ url_for('static', filename='images/affiches/' + poster)}}" alt="affiches du film"
+        class="affiche-film">
+    </div>
+    <div class="film-details">
+      <h2 class="film-title">{{ title }}</h2>
+      <div class="film-details-p">
+        <p class="film-year">Date de Sortie : {{ year }}</p>
+        <p class="film-description">{{ description }}</p>
+      </div>
+    </div>
+  </div>
 
-    // bouton favori -----
+</div>
+{% endblock %}
 
-    const favori = document.querySelector('#heart-icon');
-    const favoriBtn = document.querySelector('#favorite');
+{% block extra_js %}
 
-    favoriBtn.addEventListener('click', () => {
+<script>
 
-      const isFav = favori.classList.contains('ri-heart-fill');
-      const newState = !isFav;
+  // bouton favori -----
 
-      favori.classList.toggle('ri-heart-line');
-      favori.classList.toggle('ri-heart-fill');
+  const favori = document.querySelector('#heart-icon');
+  const favoriBtn = document.querySelector('#favorite');
 
-      fetch("/set_film_favorite", {
+  favoriBtn.addEventListener('click', () => {
+
+    const isFav = favori.classList.contains('ri-heart-fill');
+    const newState = !isFav;
+
+    favori.classList.toggle('ri-heart-line');
+    favori.classList.toggle('ri-heart-fill');
+
+    fetch("/set_film_favorite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        film: "{{ video }}",
+        favorite: newState
+      })
+    });
+  });
+
+  // Films si admin -----
+
+  const videoName = "{{ video }}";
+  const username = "{{ username }}";
+  const video = document.querySelector("#player");
+
+  if (video && videoName) {
+    fetch(`/progress?video=${encodeURIComponent(videoName)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.position) video.currentTime = data.position;
+      });
+
+    setInterval(() => {
+      fetch("/progress", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          film: "{{ video }}",
-          favorite: newState
+          video: videoName,
+          position: video.currentTime
         })
       });
-    });
+    }, 5000);
+  }
 
-    // Films si admin -----
+  // fin ------
 
-    const videoName = "{{ video }}";
-    const username = "{{ username }}";
-    const video = document.querySelector("#player");
-
-    if (video && videoName) {
-      fetch(`/progress?video=${encodeURIComponent(videoName)}`)
-        .then(r => r.json())
-        .then(data => {
-          if (data.position) video.currentTime = data.position;
-        });
-
-      setInterval(() => {
-        fetch("/progress", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            video: videoName,
-            position: video.currentTime
-          })
-        });
-      }, 5000);
-    }
-
-    // fin ------
-
-  </script>
-  <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-
-</body>
-
-</html>
+</script>
+{% endblock %}

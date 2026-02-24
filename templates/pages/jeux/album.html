@@ -1,124 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quibbler</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
+{% endblock %}
 
-<body>
-    <header>
-        <div class="global-header">
-            <button class="menu-btn-phone">
-                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
-                <div class="phone-menu">
-                    <a class="exit"><i class="ri-close-line"></i></a>
-                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
-                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                    {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                    {%endif%}
-                </div>
+{% block content %}
+<button id="back-btn"><i class="ri-arrow-left-line"></i></button>
+<div class="global-album">
+    <h2 class="decoration-title">Album de cartes</h2>
+    <p class="p-title">Deviens le maître de la <span>collection</span> du monde sorcier.</p>
+    <div class="global-case">
+        {% for case in range(1, 102) %}
+        <div class="case">
+
+            {% if case in user.cards %}
+            <button class="btn-case" data-id="{{ case }}">
+                <img src="{{ url_for('static', filename='images/cards/' ~ case ~ '.png')}}">
             </button>
-            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
-            <div class="menu">
-                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
-                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
-                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
-                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
-                <button class="menu-btn pc-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                    <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                        {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                        {%endif%}
-                    </div>
+            <div class="description" data-id="{{ case }}">
+                <button class="back-btn-3"><i class="ri-arrow-left-line"></i></button>
+                <button class="favorite-btn" data-id="{{ case }}">
+                    <i
+                        class="heart-icon {{ 'ri-heart-fill' if user.carte|string == case|string else 'ri-heart-line' }}"></i>
                 </button>
-                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Début de la page -->
-
-    <main>
-        <button id="back-btn"><i class="ri-arrow-left-line"></i></button>
-        <div class="global-album">
-            <h2 class="decoration-title">Album de cartes</h2>
-            <p class="p-title">Deviens le maître de la <span>collection</span> du monde sorcier.</p>
-            <div class="global-case">
-                {% for case in range(1, 102) %}
-                <div class="case">
-
-                    {% if case in user.cards %}
-                    <button class="btn-case" data-id="{{ case }}">
-                        <img src="{{ url_for('static', filename='images/cards/' ~ case ~ '.png')}}">
-                    </button>
-                    <div class="description" data-id="{{ case }}">
-                        <button class="back-btn-3"><i class="ri-arrow-left-line"></i></button>
-                        <button class="favorite-btn" data-id="{{ case }}">
-                            <i
-                                class="heart-icon {{ 'ri-heart-fill' if user.carte|string == case|string else 'ri-heart-line' }}"></i>
-                        </button>
-                        <div>
-                            <img src="{{ url_for('static', filename='images/cards/' ~ case ~ '.png')}}">
-                            <p>{{cards[case]['doublons']}} <i class="ri-pentagon-line"></i></p>
-                        </div>
-
-                        <div class="card-description">
-                            <h1> {{cards[case]['noms']}} </h1>
-                            <p> {{cards[case]['description']}} </p>
-                            <a class="btn-more" href="{{ cards[case]['url'] }}">Voir plus dans l'Encyclopédie</a>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div>
-                        <img src="{{ url_for('static', filename='images/cards/0.png')}}">
-                    </div>
-                    {% endif %}
+                <div>
+                    <img src="{{ url_for('static', filename='images/cards/' ~ case ~ '.png')}}">
+                    <p>{{cards[case]['doublons']}} <i class="ri-pentagon-line"></i></p>
                 </div>
-                {% endfor %}
+
+                <div class="card-description">
+                    <h1> {{cards[case]['noms']}} </h1>
+                    <p> {{cards[case]['description']}} </p>
+                    <a class="btn-more" href="{{ cards[case]['url'] }}">Voir plus dans l'Encyclopédie</a>
+                </div>
             </div>
+            {% else %}
+            <div>
+                <img src="{{ url_for('static', filename='images/cards/0.png')}}">
+            </div>
+            {% endif %}
         </div>
-    </main>
+        {% endfor %}
+    </div>
+</div>
 
-    <!-- Fin de la page -->
+{% endblock %}
 
-    <footer>
-        <img src="/static/images/background-footer.png">
-        <div class="all-footer">
-            <p>copyright 2025 | Quibbler</p>
-            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
-            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
-            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
-            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
-        </div>
-    </footer>
-    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-    <script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
-</body>
-
-</html>
+{% block extra_js %}
+<script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
+{% endblock %}

@@ -1,125 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ quiz.title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
+{% endblock %}
 
-<body class="body-quiz">
-    <header>
-        <div class="global-header">
-            <button class="menu-btn-phone">
-                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
-                <div class="phone-menu">
-                    <a class="exit"><i class="ri-close-line"></i></a>
-                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
-                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                    {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                    {%endif%}
-                </div>
-            </button>
-            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
-            <div class="menu">
-                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
-                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
-                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
-                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
-                <button class="menu-btn pc-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                    <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                        {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                        {%endif%}
-                    </div>
-                </button>
-                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-    </header>
+{% block main %}quiz-end{% endblock%}
 
-    <!-- Début de la page -->
+{% block content %}
 
-    <main class="quiz-end">
+{% if mode == 'express' %}
 
-        {% if mode == 'express' %}
+<h1>{{ message }} {{ username }} !</h1>
+<p>Vous avez obtenu {{ score }} / {{ total }} points sur le quiz "{{ quiz.title }}"</p>
+<p class="score">Votre meilleur score est {{ best_score }}</p>
+<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-            <h1>{{ message }} {{ username }} !</h1>
-            <p>Vous avez obtenu {{ score }} / {{ total }} points sur le quiz "{{ quiz.title }}"</p>
-            <p class="score">Votre meilleur score est {{ best_score }}</p>
-            <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+{% elif mode == 'choixpeau' %}
 
-        {% elif mode == 'choixpeau' %}
+<div class="score-maisons">
+    <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}" class="image-maison">
+    <h2 class="score">{{maison}}</h2>
+    <p>{{ desc_maisons }}</p>
+</div>
 
-            <div class="score-maisons">
-                <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}" class="image-maison">
-                <h2 class="score">{{maison}}</h2>
-                <p>{{ desc_maisons }}</p>
-            </div>
-            
-            <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-        {% elif mode == 'patronus' %}
+{% elif mode == 'patronus' %}
 
-            <div class="score-patronus">
-                <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}" class="image-patronus">
-                <h2 class="score">{{patronus}}</h2>
-                <p>{{ desc_patronus }}</p>
-            </div>
-            
-            <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+<div class="score-patronus">
+    <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}" class="image-patronus">
+    <h2 class="score">{{patronus}}</h2>
+    <p>{{ desc_patronus }}</p>
+</div>
 
-        {% elif mode == 'alignement' %}
+<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-            <div class="score-alignement">
-                <img src="{{ url_for('static', filename='images/alignement/' + alignement + '.png')}}" class="image-alignement">
-                <h2 class="score">{{alignement}}</h2>
-                <p>{{ desc_alignement }}</p>
-            </div>
-            
-            <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+{% elif mode == 'alignement' %}
 
-        {% elif mode == 'matiere' %}
+<div class="score-alignement">
+    <img src="{{ url_for('static', filename='images/alignement/' + alignement + '.png')}}" class="image-alignement">
+    <h2 class="score">{{alignement}}</h2>
+    <p>{{ desc_alignement }}</p>
+</div>
 
-            <div class="score-matiere">
-                <img src="{{ url_for('static', filename='images/matiere/' + matiere + '.png')}}" class="image-matiere">
-                <h2 class="score">{{matiere}}</h2>
-                <p>{{ desc_matiere }}</p>
-            </div>
-            
-            <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-        {%endif%}
-    </main>
+{% elif mode == 'matiere' %}
 
-    <!-- Fin de la page -->
+<div class="score-matiere">
+    <img src="{{ url_for('static', filename='images/matiere/' + matiere + '.png')}}" class="image-matiere">
+    <h2 class="score">{{matiere}}</h2>
+    <p>{{ desc_matiere }}</p>
+</div>
 
-    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-    <script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
-</body>
+<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-</html>
+{%endif%}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
+{% endblock %}

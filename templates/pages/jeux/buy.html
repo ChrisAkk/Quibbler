@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quibbler</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
+{% endblock %}
 
-<body class="{% if erreur %}back-error{%else%}back-no-error{% endif %}">
+{% block header %}{% endblock %}
 
-    <!-- Début de la page -->
-    <main>
+{% block content %}
         {% if mode == 1 %}
             {% if not erreur %}
                 <a class="back-btn" href="{{url_for('routes.to_jeux')}}"><i class="ri-arrow-left-line"></i></a>
@@ -37,11 +30,10 @@
                 </div>
             {% endif %}
         {% endif %}
-    </main>
-    <!-- Fin de la page -->
+{% endblock %}
 
-    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-    <script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
-</body>
+{% block footer %}{% endblock %}
 
-</html>
+{% block extra_js %}
+<script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
+{% endblock %}

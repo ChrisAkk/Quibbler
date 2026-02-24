@@ -1,192 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ quiz.title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/jeux.css') }}">
+{% endblock %}
 
-<body class="body-quiz">
-    <header>
-        <div class="global-header">
-            <button class="menu-btn-phone">
-                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
-                <div class="phone-menu">
-                    <a class="exit"><i class="ri-close-line"></i></a>
-                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
-                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                    {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                    {%endif%}
-                </div>
-            </button>
-            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
-            <div class="menu">
-                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
-                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
-                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
-                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
-                <button class="menu-btn pc-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                    <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                        {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                        {%endif%}
-                    </div>
-                </button>
-                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                </a>
-            </div>
+{% block content %}
+
+{% if mode == 'choixpeau' %}
+<div class="quiz-start">
+    <h1> Quiz des maisons </h1>
+    <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <form method="post">
+        <p class="question">{{ question.question }}</p>
+        <div class="questions">
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="answer" value="{{ loop.index0 }}" required>
+                {{ option }}
+            </label><br>
+            {% endfor %}
         </div>
-    </header>
+        <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
+    </form>
+</div>
 
+{% elif mode == 'patronus' %}
+<div class="quiz-start">
+    <h1> Quiz des Patronus </h1>
+    <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <form method="post">
+        <p class="question">{{ question.question }}</p>
+        <div class="questions">
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="answer" value="{{ option }}" required>
+                {{ option }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
+    </form>
+</div>
 
-    <!-- Début de la page -->
+{% elif mode == 'alignement' %}
+<div class="quiz-start">
+    <h1> Quiz d'Alignement </h1>
+    <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <form method="post">
+        <p class="question">{{ question.question }}</p>
+        <div class="questions">
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="answer" value="{{ loop.index0 }}" required>
+                {{ option }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
+    </form>
+</div>
 
-    <main>
+{% elif mode == 'matiere' %}
+<div class="quiz-start quiz-matiere">
+    <h1> Quiz Matière Préféré </h1>
+    <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <form method="post">
+        <p class="question">{{ question.question }}</p>
+        <div class="questions">
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="answer" value="{{ loop.index0 }}" required>
+                {{ option }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
+    </form>
+</div>
 
-        {% if mode == 'choixpeau' %}
-            <div class="quiz-start">
-                <h1> Quiz des maisons </h1>
-                <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <form method="post">
-                    <p class="question">{{ question.question }}</p>
-                    <div class="questions">
-                        {% for option in question.options %}
-                        <label>
-                            <input type="radio" name="answer" value="{{ loop.index0 }}" required>
-                            {{ option }}
-                        </label><br>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
-                </form>
+{% elif mode == 'express' %}
+{% if mode_express == 'correction' %}
+<div class="quiz-start">
+    <h1>{{ quiz.title }}</h1>
+    <p class="total-questions">Correction de la question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <p class="{%if statut == 'success'%}text-correct{%else%}text-error{%endif%}">{{ message }}</p>
+    <p class="good-answer">réponse : {{ answer }}</p>
+    <div class="global-explication">
+        <div class="correction">
+            <div class="explication">
+                <h2> Explication </h2>
+                <p class="explication-p">{{ explication }}</p>
             </div>
+            <form method="post">
+                <input type="hidden" name="mode_express" value="question">
+                <button type="submit" class="send-btn">Suivant</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-        {% elif mode == 'patronus' %}
-            <div class="quiz-start">
-                <h1> Quiz des Patronus </h1>
-                <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <form method="post">
-                    <p class="question">{{ question.question }}</p>
-                    <div class="questions">
-                        {% for option in question.options %}
-                        <label>
-                            <input type="radio" name="answer" value="{{ option }}" required>
-                            {{ option }}
-                        </label><br>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
-                </form>
-            </div>
+{% else %}
+<div class="quiz-start">
+    <h1>{{ quiz.title }}</h1>
+    <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
+    <div class="timer">
+        <p><span id="time">20</span>s</p>
+    </div>
+    <form method="post">
+        <p class="question">{{ question.questions }}</p>
+        <div class="questions">
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="answer" value="{{ option }}" required>
+                {{ option }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
+    </form>
+</div>
+{%endif%}
+{%endif%}
 
-        {% elif mode == 'alignement' %}
-            <div class="quiz-start">
-                <h1> Quiz d'Alignement </h1>
-                <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <form method="post">
-                    <p class="question">{{ question.question }}</p>
-                    <div class="questions">
-                        {% for option in question.options %}
-                        <label>
-                            <input type="radio" name="answer" value="{{ loop.index0 }}" required>
-                            {{ option }}
-                        </label><br>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
-                </form>
-            </div>
+{% endblock %}
 
-        {% elif mode == 'matiere' %}
-            <div class="quiz-start quiz-matiere">
-                <h1> Quiz Matière Préféré </h1>
-                <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <form method="post">
-                    <p class="question">{{ question.question }}</p>
-                    <div class="questions">
-                        {% for option in question.options %}
-                        <label>
-                            <input type="radio" name="answer" value="{{ loop.index0 }}" required>
-                            {{ option }}
-                        </label><br>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
-                </form>
-            </div>
+{% block footer %}{% endblock %}
 
-        {% elif mode == 'express' %}
-            {% if mode_express == 'correction' %}
-            <div class="quiz-start">
-                <h1>{{ quiz.title }}</h1>
-                <p class="total-questions">Correction de la question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <p class="{%if statut == 'success'%}text-correct{%else%}text-error{%endif%}">{{ message }}</p>
-                <p class="good-answer">réponse : {{ answer }}</p>
-                <div class="global-explication">
-                    <div class="correction">
-                        <div class="explication">
-                            <h2> Explication </h2>
-                            <p class="explication-p">{{ explication }}</p>
-                        </div>
-                        <form method="post">
-                            <input type="hidden" name="mode_express" value="question">
-                            <button type="submit" class="send-btn">Suivant</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            {% else %}
-            <div class="quiz-start">
-                <h1>{{ quiz.title }}</h1>
-                <p class="total-questions">Question {{ index + 1 }} / {{ quiz.questions|length }}</p>
-                <div class="timer"><p><span id="time">20</span>s</p></div>
-                <form method="post">
-                    <p class="question">{{ question.questions }}</p>
-                    <div class="questions">
-                        {% for option in question.options %}
-                        <label>
-                            <input type="radio" name="answer" value="{{ option }}" required>
-                            {{ option }}
-                        </label><br>
-                        {% endfor %}
-                    </div>
-                    <button type="submit" class="send-btn">{% if is_last %}Terminer{% else %}Suivant{% endif %}</button>
-                </form>
-            </div>
-            {%endif%}
-        {%endif%}
-
-    </main>
-
-    <!-- Fin de la page -->
-
-    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-    <script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
-</body>
-
-</html>
+{% block extra_js %}
+<script src="{{ url_for('static', filename = 'javascript/jeux.js')}}"></script>
+{% endblock %}

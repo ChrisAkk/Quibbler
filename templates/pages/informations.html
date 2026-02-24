@@ -1,134 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quibbler</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/informations.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/informations.css') }}">
+{% endblock %}
 
-<body>
-    <header>
-        <div class="global-header">
-            <button class="menu-btn-phone">
-                <div class="menu-phone"><i class="ri-menu-5-fill"></i></div>
-                <div class="phone-menu">
-                    <a class="exit"><i class="ri-close-line"></i></a>
-                    <a class="searchable" href="{{url_for('routes.to_films')}}"><i class="ri-movie-line"></i> Films</a>
-                    <a class="searchable" href="{{url_for('routes.to_livres')}}"><i class="ri-book-shelf-line"></i> Livres</a>
-                    <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}"><i class="ri-book-line"></i> Encyclopédie</a>
-                    <a class="searchable" href="{{url_for('routes.to_jeux')}}"><i class="ri-gamepad-line"></i> Jeux</a>
-                    <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</i></a>
-                    <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                    <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                    {% if user.admin == 1 %}
-                      <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                    {%endif%}
-                </div>
-            </button>
-            <a href="{{url_for('routes.to_home')}}" class="hello-user">Quibbler</a>
-            <div class="menu">
-                <a class="searchable" href="{{url_for('routes.to_films')}}">Films</a>
-                <a class="searchable" href="{{url_for('routes.to_livres')}}">Livres</a>
-                <a class="searchable" href="{{url_for('routes.to_encyclopedie')}}">Encyclopédie</a>
-                <a class="searchable" href="{{url_for('routes.to_jeux')}}">Jeux</a>
-                <button class="menu-btn pc-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                    <div class="profil-menu">
-                        <a class="searchable" href="{{url_for('routes.to_profil')}}"><i class="ri-user-line"></i> Profil</a>
-                        <a class="searchable" href="{{url_for('routes.to_informations')}}"><i class="ri-information-line"></i> Informations</a>
-                        <a class="searchable" href="{{url_for('routes.to_contact')}}"><i class="ri-mail-send-line"></i> Contact</a>
-                        <a class="searchable" href="{{url_for('routes.logout')}}"><i class="ri-logout-circle-r-line"></i> Déconnexion</a>
-                        {% if user.admin == 1 %}
-                          <a class="searchable" href="{{url_for('routes.to_admin')}}"><i class="ri-admin-line"></i> Admin</a>
-                        {%endif%}
-                    </div>
-                </button>
-                <a href="{{ url_for('routes.to_profil')}}" class="menu-btn phone-only">
-                    {% if user.profil_picture.startswith('http') %}
-                        <img src="{{ user.profil_picture }}" class="photo-profil">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-    </header>
+{% block content %}
+<div class="section">
+    <h2> À propos </h2>
+    <p><span>Bienvenue</span> sur notre site dédié à l’univers magique de Harry Potter !
+        Tout a commencé avec la célèbre saga de films, mais notre aventure ne s’arrête pas là. Ce site a été
+        conçu pour <span>rassembler</span> tous les <span>fans</span> du monde des sorciers, que vous veniez
+        revoir vos films préférés ou
+        explorer plus profondément l’univers imaginé par J.K. Rowling.
+    </p>
+    <p>Ici, vous retrouverez les <span>8 films</span> de la saga, les <span>8 livres</span>, ainsi qu’une
+        <span>encyclopédie</span> complète contenant
+        des fiches sur les personnages, les lieux, les sorts et les créatures magiques. Vous pourrez également
+        profiter de <span>jeux</span> et de quiz pour tester vos connaissances et vous amuser entre Moldus et
+        sorciers. Et ce
+        n’est pas tout : de nombreuses surprises attendent les passionnés les plus curieux.
+    </p>
+    <p>
+        Notre <span>objectif</span> est simple : créer un <span>espace magique</span> où l’on peut se promener
+        entre nostalgie,
+        découvertes et mystères. Que vous soyez à Poudlard, à Pré-au-Lard ou caché au 12, square Grimmaurd, ce
+        site est fait pour vous.
+    </p>
+    <p>
+        Mais l’aventure ne s’arrête pas là ! En participant sur le site, vous pouvez <span>gagner des
+            points</span> pour
+        votre maison. Chaque <span>victoire</span>, chaque <span>bonne réponse</span> à un quiz, chaque défi
+        relevé vous permet de faire
+        briller les couleurs de votre maison : Gryffondor, Serpentard, Serdaigle ou Poufsouffle.
+    </p>
+    <p>
+        Et si vous ne savez pas encore à quelle maison vous appartenez, pas de panique !
+        Commencez par passer le <a class="text-btn" href="{{url_for('routes.to_jeux')}}"><span>test du Choixpeau
+                magique</span></a>: c’est la seule façon de savoir à quelle maison vous
+        êtes destiné… et de pouvoir ensuite lui faire remporter des points !
+    </p>
+</div>
+<div class="section">
+    <h2> Les sources </h2>
+    <p>Ce site <span>fan</span> Harry Potter a pour objectif de <span>rassembler</span> et d’organiser un maximum
+        d’informations provenant
+        de nombreuses sources afin de créer la ressource la <span>plus complète</span> possible. Chaque détail a été
+        compilé
+        pour que les fans puissent explorer, découvrir et profiter <span>pleinement</span> de l’univers magique de J.K.
+        Rowling.</p>
+    <div class="sources">
+        <a href="https://famille-greluche.forumactif.com/t10-liste-des-patronus" target="_blank"><i
+                class="ri-links-line"></i> Famille Greluche - Liste des patronus</a>
+        <a href="https://www.gamesider.com/pop-culture/harry-potter-20-anecdotes-que-vous-ne-connaissiez-pas-sur-le-tournage-de-la-saga_diapo29968.html"
+            target="_blank"><i class="ri-links-line"></i> pop culture - 20 anecdotes de tournage sur la saga culte</a>
+        <a href="https://www.harrypotter.com/fr" target="_blank"><i class="ri-links-line"></i> wizarding world</a>
+        <a href="https://harrypotter.fandom.com/fr/wiki/Wiki_Harry_Potter" target="_blank"><i class="ri-links-line"></i>
+            Wiki Harry Potter</a>
+        <a href="https://www.jeuxvideo.com/jeux/playstation-2-ps2/00009539-harry-potter-et-la-chambre-des-secrets.htm"
+            target="_blank"><i class="ri-links-line"></i> Cartes de Chocogrenouille – Harry Potter et la Chambre des
+            secrets (PS2)</a>
+    </div>
+</div>
+{% endblock %}
 
-    <!-- Début de la page -->
-
-    <main>
-        <div class="section">
-            <h2> À propos </h2>
-            <p><span>Bienvenue</span> sur notre site dédié à l’univers magique de Harry Potter !
-                Tout a commencé avec la célèbre saga de films, mais notre aventure ne s’arrête pas là. Ce site a été
-                conçu pour <span>rassembler</span> tous les <span>fans</span> du monde des sorciers, que vous veniez
-                revoir vos films préférés ou
-                explorer plus profondément l’univers imaginé par J.K. Rowling.
-            </p>
-            <p>Ici, vous retrouverez les <span>8 films</span> de la saga, les <span>8 livres</span>, ainsi qu’une
-                <span>encyclopédie</span> complète contenant
-                des fiches sur les personnages, les lieux, les sorts et les créatures magiques. Vous pourrez également
-                profiter de <span>jeux</span> et de quiz pour tester vos connaissances et vous amuser entre Moldus et
-                sorciers. Et ce
-                n’est pas tout : de nombreuses surprises attendent les passionnés les plus curieux.
-            </p>
-            <p>
-                Notre <span>objectif</span> est simple : créer un <span>espace magique</span> où l’on peut se promener
-                entre nostalgie,
-                découvertes et mystères. Que vous soyez à Poudlard, à Pré-au-Lard ou caché au 12, square Grimmaurd, ce
-                site est fait pour vous.
-            </p>
-            <p>
-                Mais l’aventure ne s’arrête pas là ! En participant sur le site, vous pouvez <span>gagner des
-                    points</span> pour
-                votre maison. Chaque <span>victoire</span>, chaque <span>bonne réponse</span> à un quiz, chaque défi
-                relevé vous permet de faire
-                briller les couleurs de votre maison : Gryffondor, Serpentard, Serdaigle ou Poufsouffle.
-            </p>
-            <p>
-                Et si vous ne savez pas encore à quelle maison vous appartenez, pas de panique !
-                Commencez par passer le <a class="text-btn" href="{{url_for('routes.to_jeux')}}"><span>test du Choixpeau
-                        magique</span></a>: c’est la seule façon de savoir à quelle maison vous
-                êtes destiné… et de pouvoir ensuite lui faire remporter des points !
-            </p>
-        </div>
-        <div class="section">
-            <h2> Les sources </h2>
-            <p>Ce site <span>fan</span> Harry Potter a pour objectif de <span>rassembler</span> et d’organiser un maximum d’informations provenant
-                de nombreuses sources afin de créer la ressource la <span>plus complète</span> possible. Chaque détail a été compilé
-                pour que les fans puissent explorer, découvrir et profiter <span>pleinement</span> de l’univers magique de J.K.
-                Rowling.</p>
-            <div class="sources">
-                <a href="https://famille-greluche.forumactif.com/t10-liste-des-patronus" target="_blank"><i class="ri-links-line"></i> Famille Greluche - Liste des patronus</a>
-                <a href="https://www.gamesider.com/pop-culture/harry-potter-20-anecdotes-que-vous-ne-connaissiez-pas-sur-le-tournage-de-la-saga_diapo29968.html" target="_blank"><i class="ri-links-line"></i> pop culture - 20 anecdotes de tournage sur la saga culte</a>
-                <a href="https://www.harrypotter.com/fr" target="_blank"><i class="ri-links-line"></i> wizarding world</a>
-                <a href="https://harrypotter.fandom.com/fr/wiki/Wiki_Harry_Potter" target="_blank"><i class="ri-links-line"></i> Wiki Harry Potter</a>
-                <a href="https://www.jeuxvideo.com/jeux/playstation-2-ps2/00009539-harry-potter-et-la-chambre-des-secrets.htm" target="_blank"><i class="ri-links-line"></i> Cartes de Chocogrenouille – Harry Potter et la Chambre des secrets (PS2)</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Fin de la page -->
-
-    <footer>
-        <img src="/static/images/background-footer.png">
-        <div class="all-footer">
-            <p>copyright 2025 | Quibbler</p>
-            <a class="searchable-footer" href="{{url_for('routes.to_informations')}}">Informations</a>
-            <a class="searchable-footer" href="{{url_for('routes.to_contact')}}">Contact</a>
-            <a class="searchable-footer" href="{{url_for('routes.logout')}}">Déconnexion</a>
-            <a href="https://www.instagram.com/harrypotter/?hl=en" target="_blank">Instagram</a>
-        </div>
-    </footer>
-    <script src="{{ url_for('static', filename = 'javascript/main.js')}}"></script>
-</body>
-
-</html>
+{% block extra_js %}
+{% endblock %}
