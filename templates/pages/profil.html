@@ -9,20 +9,18 @@
     <h1 class="decoration-title">Profil</h1>
     <div class="section-2 pc">
         <div class="maison-profil">
-            {% if maison == "Gryffondor" or maison == "Poufsouffle" or maison == "Serdaigle" or maison ==
-            "Serpentard" %}
+            {% if maison in ["Gryffondor", "Poufsouffle", "Serdaigle", "Serpentard"] %}
             <div><img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}"></div>
             {% else %}
             <a href="{{ url_for('routes.to_jeux')}}">
-                <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}">
+                <img src="{{ url_for('static', filename='images/maisons/poudlard.png')}}">
                 <i class="ri-pencil-line"></i>
             </a>
             {%endif%}
             <h2>Maison</h2>
         </div>
         <div class="photo-profil">
-            <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST"
-                enctype="multipart/form-data">
+            <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST" enctype="multipart/form-data">
                 <label for="profil-picture-input">
                     {% if user.profil_picture.startswith('http') %}
                     <img src="{{ user.profil_picture }}" class="photo-profil">
@@ -52,8 +50,7 @@
             <form id="profil-picture-form" action="{{ url_for('routes.upload_profile_picture') }}" method="POST"
                 enctype="multipart/form-data">
                 <label for="profil-picture-input">
-                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt=""
-                        class="photo-profil">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" alt="" class="photo-profil">
                     <i class="ri-camera-line"></i>
                 </label>
                 <input type="file" id="profil-picture-input" name="file" accept="image/*" style="display: none;">
@@ -62,12 +59,15 @@
         </div>
         <div class="personnality">
             <div class="maison-profil">
-                {% if maison == "Gryffondor" or maison == "Poufsouffle" or maison == "Serdaigle" or maison ==
-                "Serpentard" %}
-                <div><img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}"></div>
+                {% if maison in ["Gryffondor", "Poufsouffle", "Serdaigle", "Serpentard"] %}
+                <div><img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}"></div>
                 {% else %}
                 <a href="{{ url_for('routes.to_jeux')}}">
-                    <img src="{{ url_for('static', filename='images/maisons/' + maison + '.png')}}">
+                    {% if user.profil_picture.startswith('http') %}
+                    <img src="{{ user.profil_picture }}" class="photo-profil">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='uploads/' + user.profil_picture) }}" class="photo-profil">
+                    {% endif %}
                     <i class="ri-pencil-line"></i>
                 </a>
                 {%endif%}
