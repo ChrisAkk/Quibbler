@@ -51,7 +51,7 @@ class MyAdminIndexView(AdminIndexView):
         return self.render('admin/home.html')
 
 # Initialisation de l'Admin
-admin = Admin(app, name="Quibbler Admin", template_mode='bootstrap4', index_view=MyAdminIndexView())
+admin = Admin(app, name="Quibbler Admin", index_view=MyAdminIndexView())
 
 class BaseAdminView(ModelView):
     """Classe de base pour gérer les accès admin sans répéter le code"""
@@ -77,20 +77,16 @@ class UserAdmin(BaseAdminView):
 class HouseAdmin(BaseAdminView):
     column_list = ['id', 'name', 'points']
 
-# Ajout des vues au panneau d'administration
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(HouseAdmin(House, db.session))
 
-# --- Enregistrement des Blueprints ---
 app.register_blueprint(routes_bp) 
 
-# --- Routes Spéciales ---
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('static', 'sitemap.xml')
 
 # --- Lancement de l'application ---
 if __name__ == "__main__":
-    # En local, on utilise le port 5001
     port = int(os.environ.get('PORT', 5001))
     app.run(host="0.0.0.0", port=port, debug=True)
