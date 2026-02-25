@@ -81,7 +81,7 @@ admin.add_view(UserAdmin(User, db.session))
 admin.add_view(HouseAdmin(House, db.session))
 
 app.register_blueprint(routes_bp) 
-
+ 
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('static', 'sitemap.xml')
