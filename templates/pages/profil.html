@@ -136,7 +136,7 @@
                 <span class="field-label">Alignement :</span><span class="field-value"> {{ alignement
                     }}</span>
                 <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
-                    {% if alignement %}
+                    {% if alignement != "alignement" %}
                     <i class="ri-checkbox-line"></i>
                     {% else %}
                     <i class="ri-checkbox-blank-line"></i>
