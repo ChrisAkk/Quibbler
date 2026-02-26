@@ -133,8 +133,11 @@
                 </a>
             </div>
             <div class="info-perso" data-field="alignement">
-                <span class="field-label">Alignement :</span><span class="field-value"> {{ alignement
-                    }}</span>
+                <span class="field-label">Alignement :</span><span class="field-value">
+                    {% if alignement != "alignement" %}
+                    {{ alignement }}
+                    {%endif%}
+                </span>
                 <a href="{{ url_for('routes.to_jeux')}}#section-jeux" class="edit-btn">
                     {% if alignement != "alignement" %}
                     <i class="ri-checkbox-line"></i>
