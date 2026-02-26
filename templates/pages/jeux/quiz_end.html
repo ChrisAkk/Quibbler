@@ -10,54 +10,59 @@
 
 {% block content %}
 
-{% if mode == 'express' %}
+<div class="quiz-end">
 
-<h1>{{ message }} {{ username }} !</h1>
-<p>Vous avez obtenu {{ score }} / {{ total }} points sur le quiz "{{ quiz.title }}"</p>
-<p class="score">Votre meilleur score est {{ best_score }}</p>
-<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+    {% if mode == 'express' %}
 
-{% elif mode == 'choixpeau' %}
+    <h1>{{ message }} {{ username }} !</h1>
+    <p>Vous avez obtenu {{ score }} / {{ total }} points sur le quiz "{{ quiz.title }}"</p>
+    <p class="score">Votre meilleur score est {{ best_score }}</p>
+    <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
 
-<div class="score-maisons">
-    <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}" class="image-maison">
-    <h2 class="score">{{maison}}</h2>
-    <p>{{ desc_maisons }}</p>
+    {% elif mode == 'choixpeau' %}
+
+    <div class="score-maisons">
+        <img src="{{ url_for('static', filename='images/maisons/' + maison|lower + '.png')}}" class="image-maison">
+        <h2 class="score">{{maison}}</h2>
+        <p>{{ desc_maisons }}</p>
+    </div>
+
+    <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+
+    {% elif mode == 'patronus' %}
+
+    <div class="score-patronus">
+        <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}" class="image-patronus">
+        <h2 class="score">{{patronus}}</h2>
+        <p>{{ desc_patronus }}</p>
+    </div>
+
+    <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+
+    {% elif mode == 'alignement' %}
+
+    <div class="score-alignement">
+        <img src="{{ url_for('static', filename='images/alignement/' + alignement + '.png')}}" class="image-alignement">
+        <h2 class="score">{{alignement}}</h2>
+        <p>{{ desc_alignement }}</p>
+    </div>
+
+    <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+
+    {% elif mode == 'matiere' %}
+
+    <div class="score-matiere">
+        <img src="{{ url_for('static', filename='images/matiere/' + matiere + '.png')}}" class="image-matiere">
+        <h2 class="score">{{matiere}}</h2>
+        <p>{{ desc_matiere }}</p>
+    </div>
+
+    <a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
+
+    {%endif%}
+
 </div>
 
-<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
-
-{% elif mode == 'patronus' %}
-
-<div class="score-patronus">
-    <img src="{{ url_for('static', filename='images/patronus/' + patronus + '.png')}}" class="image-patronus">
-    <h2 class="score">{{patronus}}</h2>
-    <p>{{ desc_patronus }}</p>
-</div>
-
-<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
-
-{% elif mode == 'alignement' %}
-
-<div class="score-alignement">
-    <img src="{{ url_for('static', filename='images/alignement/' + alignement + '.png')}}" class="image-alignement">
-    <h2 class="score">{{alignement}}</h2>
-    <p>{{ desc_alignement }}</p>
-</div>
-
-<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
-
-{% elif mode == 'matiere' %}
-
-<div class="score-matiere">
-    <img src="{{ url_for('static', filename='images/matiere/' + matiere + '.png')}}" class="image-matiere">
-    <h2 class="score">{{matiere}}</h2>
-    <p>{{ desc_matiere }}</p>
-</div>
-
-<a href="{{ url_for('routes.to_jeux') }}">Retour aux quiz</a>
-
-{%endif%}
 {% endblock %}
 
 {% block extra_js %}
