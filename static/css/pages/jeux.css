@@ -951,7 +951,8 @@ form {
 }
 
 .score-patronus,
-.score-maisons {
+.score-maisons,
+.score-alignement {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -966,7 +967,8 @@ form {
 }
 
 .image-patronus,
-.image-maison {
+.image-maison,
+.image-alignement {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -974,7 +976,8 @@ form {
 }
 
 .score-patronus h2,
-.score-maison h2 {
+.score-maison h2,
+.score-alignement h2 {
     font-size: 2rem;
 }
 
