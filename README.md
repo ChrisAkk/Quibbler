@@ -1,5 +1,7 @@
 # 🦉 Quibbler — Le site des fans de Harry Potter
 
+[![Publié sur Snipped](https://snipped.dev/badge.svg)](https://snipped.dev/project/cmwv8jk0t000008l84kdkaa8w)
+
 Quibbler est une application web dédiée à l'univers Harry Potter. Elle propose des quiz, une encyclopédie, un système de cartes à collectionner, un lecteur de films, et bien plus encore — le tout avec un système de comptes utilisateurs et de maisons.
 
 ---
